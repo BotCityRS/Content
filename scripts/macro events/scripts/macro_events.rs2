@@ -60,6 +60,8 @@ if (~in_tutorial_island($coord) = true) {
 return(true);
 
 [proc,macro_event_allowed]()(boolean)
+//random events disabled
+return(false);
 if (~macro_event_area(coord) = false) {
     return(false);
 }
