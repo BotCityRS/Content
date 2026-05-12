@@ -1,8 +1,7 @@
 [rune_essence_table]
 table=mining_table
-data=rock,loc_2491
+data=rock,blankrunestone
 data=ore_name,rune stones
-data=success_message,You manage to mine an unbound rune stone.
 data=rock_output,blankrune
 data=rock_level,1
 data=rock_exp,50
@@ -163,7 +162,7 @@ data=rock_respawnrate,200
 
 [desertrescue_rock]
 table=mining_table
-data=rock,loc_2704
+data=rock,punishrocks
 data=ore_name,rock
 data=rock_output,thpunishrock
 data=rock_level,1

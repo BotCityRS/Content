@@ -1,4 +1,4 @@
-[if_button,book:com_2]
+[if_button,book:com_1]
 switch_obj (%open_book) {
     case baxtorian_book_waterfall_quest : @book_flip_page(^book_direction_backward, 0, 4, book_on_baxtorian_page);
     case witches_diary : @book_flip_page(^book_direction_backward, 0, 3, witches_diary);
@@ -14,10 +14,11 @@ switch_obj (%open_book) {
     case ibansdove : @book_flip_page(^book_direction_backward, 0, 2, ibanconscience);
     case digsitebook : @book_flip_page(^book_direction_backward, 0, 1, book_on_chemicals);
     case book_of_binding : @book_flip_page(^book_direction_backward, 0, 4, book_of_binding_page);
+    case elemental_workshop_shield_book : @book_flip_page(^book_direction_backward, 0, 1, elemental_shield_book);
 }
 p_delay(0);
 
-[if_button,book:com_4]
+[if_button,book:com_3]
 switch_obj (%open_book) {
     case baxtorian_book_waterfall_quest : @book_flip_page(^book_direction_forward, 0, 4, book_on_baxtorian_page);
     case witches_diary : @book_flip_page(^book_direction_forward, 0, 3, witches_diary);
@@ -33,6 +34,7 @@ switch_obj (%open_book) {
     case ibansdove : @book_flip_page(^book_direction_forward, 0, 2, ibanconscience);
     case digsitebook : @book_flip_page(^book_direction_forward, 0, 1, book_on_chemicals);
     case book_of_binding : @book_flip_page(^book_direction_forward, 0, 4, book_of_binding_page);
+    case elemental_workshop_shield_book : @book_flip_page(^book_direction_forward, 0, 1, elemental_shield_book);
 }
 p_delay(0);
 
@@ -80,15 +82,15 @@ if (%book_page > $max_page) {
 }
 
 if (%book_page = $min_page) {
-    if_sethide(book:com_1, true);
+    if_sethide(book:com_2, true);
 } else {
-    if_sethide(book:com_1, false);
+    if_sethide(book:com_2, false);
 }
 
 if (%book_page = $max_page) {
-    if_sethide(book:com_3, true);
+    if_sethide(book:com_4, true);
 } else {
-    if_sethide(book:com_3, false);
+    if_sethide(book:com_4, false);
 }
 
 gosub($proc);

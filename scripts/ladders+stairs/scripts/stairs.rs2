@@ -37,6 +37,8 @@ switch_coord (loc_coord) {
     case 0_40_49_53_3 : p_telejump(1_40_49_52_3);
     case 0_45_73_41_13 : p_telejump(1_45_73_41_12); // Yanille west gate - level 0
     case 0_45_73_41_24 : p_telejump(1_45_73_41_27); // Yanille west gate - level 0
+    case 0_45_55_17_46 : p_telejump(1_45_55_17_49); // Burthorpe castle - level 0
+    case 0_45_55_34_19 : p_telejump(1_45_55_34_22); // Burthorpe pub - level 0
     case default : @unhandled_stairs(loc_coord);
 }
 
@@ -80,6 +82,8 @@ switch_coord (loc_coord) {
     case 1_40_49_53_3 : p_telejump(0_40_49_56_3);
     case 1_45_73_41_13 : p_telejump(0_45_73_41_16); // Yanille west gate - level 1
     case 1_45_73_41_25 : p_telejump(0_45_73_41_23); // Yanille west gate - level 1
+    case 1_45_55_17_47 : p_telejump(0_45_55_17_45); // Burthorpe castle - level 1
+    case 1_45_55_34_20 : p_telejump(0_45_55_34_18); // Burthorpe pub - level 1
     case default : @unhandled_stairs(loc_coord);
 }
 
@@ -217,7 +221,7 @@ switch_coord (loc_coord) {
     case 0_51_49_48_49 : p_telejump(1_51_49_50_49); // Al Kharid General Store
     case 0_45_52_27_6 : p_telejump(1_45_52_28_8); // Dark Wizard's Tower - Ground Floor
     case 1_45_52_27_6 : p_telejump(2_45_52_28_8); // Dark Wizard's Tower - First Floor
-    case 0_45_51_51_18 : p_telejump(1_45_51_52_17); // Crafting Guild
+    case 0_45_51_51_18 : p_telejump(1_45_51_53_18); // Crafting Guild
     case 0_39_53_21_37 : p_telejump(1_39_53_22_39); // Hadley house - ground floor
     case 0_48_48_10_52 : p_telejump(1_48_48_12_52); // Tutorial island Quest Guide house - ground floor
     case 0_43_73_9_8 : p_telejump(1_43_73_10_10); // Grail castle (quest) - ground floor
@@ -226,6 +230,9 @@ switch_coord (loc_coord) {
     case 0_41_73_24_11 : p_telejump(1_41_73_25_13); // Grail castle- ground floor
     case 0_48_48_43_35 : p_telejump(1_48_48_45_35); // Tutorial Church - ground floor
     case 2_50_54_21_16 : p_telejump(3_50_54_23_16); // Varrock castle east tower - level 2
+    case 0_53_54_25_36 : p_telejump(1_53_54_24_37); // Paterdomus Temple - Ground Floor (North)
+    case 0_53_54_25_28 : p_telejump(1_53_54_24_29); // Paterdomus Temple - Ground Floor (South)
+    case 0_54_54_45_19 : p_telejump(1_54_54_44_20); // Canifis Hair of the Dog Tavern
     case default : @unhandled_stairs(loc_coord);
 }
 
@@ -326,6 +333,9 @@ switch_coord (loc_coord) {
     case 1_48_48_11_52 : p_telejump(0_48_48_12_52); // Tutorial island Quest Guide house - 1st floor
     case 1_48_48_44_35 : p_telejump(0_48_48_45_35); // Tutorial Church - upper floor
     case 3_50_54_22_16 : p_telejump(2_50_54_22_15); // Varrock castle east tower - level 3
+    case 1_53_54_25_37 : p_telejump(0_53_54_25_38); // Paterdomus Temple - Level 1 (North)
+    case 1_53_54_25_29 : p_telejump(0_53_54_25_30); // Paterdomus Temple - Level 1 (South)
+    case 1_54_54_45_20 : p_telejump(0_54_54_45_21); // Canifis Hair of the Dog Tavern
     case default : @unhandled_stairs(loc_coord);
 }
 
@@ -360,15 +370,18 @@ switch_coord (loc_coord) {
         @unhandled_stairs(loc_coord);
 }
 
-[oploc1,loc_2616]
+[oploc1,cryptstairsdown]
 p_arrivedelay;
 // 0 43 29: 2616 10 2
 switch_coord (loc_coord) {
-    case 0_48_52_43_29 : p_telejump(0_48_152_5_43); // draynor manor stairs to the vampire
-    case default : @unhandled_stairs(loc_coord);
+    case 0_48_52_43_29 : // draynor manor stairs to the vampire // https://youtu.be/JmlR1NcDkGI?si=vd58QL7jZd1weQAi&t=168
+        p_telejump(0_48_152_5_43);
+        mes("You walk down the stairs...");
+    case default : @unhandled_stairs(loc_coord);     
+
 }
 
-[oploc1,loc_2617]
+[oploc1,cryptstairsup]
 p_arrivedelay;
 // 0 5 40: 2617 10 2
 switch_coord (loc_coord) {

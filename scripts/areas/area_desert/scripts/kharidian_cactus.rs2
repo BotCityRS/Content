@@ -1,4 +1,4 @@
-[oplocu,loc_2670]
+[oplocu,desert_cactus_full]
 def_obj $item = last_useitem;
 
 if ($item ! knife & oc_param($item, slashattack_anim) = human_unarmedpunch) {
@@ -8,7 +8,7 @@ if ($item ! knife & oc_param($item, slashattack_anim) = human_unarmedpunch) {
     @cut_kharidian_cactus($item);
 } 
 
-[oplocu,loc_2671]
+[oplocu,desert_cactus_empty]
 def_obj $item = last_useitem;
 
 if ($item = knife | oc_param($item, slashattack_anim) ! human_unarmedpunch) {
@@ -16,7 +16,7 @@ if ($item = knife | oc_param($item, slashattack_anim) ! human_unarmedpunch) {
     return;
 }
 
-[oploc1,loc_2670]
+[oploc1,desert_cactus_full]
 def_obj $item = ~slash_checker;
 
 if ($item = null) {
@@ -35,7 +35,7 @@ if ($item = knife) {
 sound_synth(hacksword_slash, 0, 15);
 sound_synth(liquid, 0, 0);
 
-if (stat_random(woodcutting, 30, 252) = true) {
+if (stat_random(woodcutting, 30, 253) = true) {
     if (inv_total(inv, water_skin0) > 0 | inv_total(inv, water_skin1) > 0 | inv_total(inv, water_skin2) > 0 | inv_total(inv, water_skin3) > 0) {
         mes("You top up your skin with water from the cactus.");
 

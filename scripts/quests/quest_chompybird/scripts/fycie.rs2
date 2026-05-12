@@ -1,5 +1,5 @@
-[opnpc1,chompybird_fycie]
-switch_int(%chompybird_progress) {
+[opnpc1,fycie]
+switch_int(%chompybird) {
     case ^chompybird_not_started :
         ~chatnpc("<p,neutral>You's better talk to Dad, We not talk to wierdly|'umans.");
     case ^chompybird_started :
@@ -54,7 +54,7 @@ switch_int(%chompybird_progress) {
             $chompy_flavour = "doogle leaves";
         }
 
-        ~chatnpc("<p,neutal>Dad say's you's roastling da chompy for us! Slurp!|Me's wants <$chompy_flavour> wiv mine! Yummy, can't wait|to eats it.");
+        ~chatnpc("<p,neutral>Dad say's you's roastling da chompy for us! Slurp!|Me's wants <$chompy_flavour> wiv mine! Yummy, can't wait|to eats it.");
 
     case ^chompybird_complete :
         ~chatnpc("<p,neutral>Thanks for da chompy, it was deloverly!");

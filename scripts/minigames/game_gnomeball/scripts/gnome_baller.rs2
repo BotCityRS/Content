@@ -1,6 +1,6 @@
-[ai_opplayer2,gnome_baller1] @npc_gnomeball_tackle;
-[ai_opplayer2,gnome_baller5] @npc_gnomeball_tackle;
-[ai_opplayer2,gnome_baller9] @npc_gnomeball_tackle;
+[ai_opplayer2,gnomeballer_red] @npc_gnomeball_tackle;
+[ai_opplayer2,gnomeballer_orange] @npc_gnomeball_tackle;
+[ai_opplayer2,gnomeballer_yellow] @npc_gnomeball_tackle;
 
 [label,npc_gnomeball_tackle]
 npc_setmode(null);
@@ -17,8 +17,9 @@ if (p_finduid(uid) = true) {
 
 [proc,npc_gnomeball_tackle_fail]
 npc_anim(midget_human_tackle_fail, 0);
-npc_changetype_keepall(npc_param(gnome_fallen), 7);
+npc_changetype_keepall(npc_param(gnome_fallen), ^max_32bit_int);
 npc_delay(5);
+npc_changetype_keepall(npc_param(gnome_original), ^max_32bit_int);
 npc_anim(midget_human_tackle_fail_getup, 0);
 %npc_attacking_uid = null;
 
@@ -37,14 +38,14 @@ npc_sethuntmode(null); // none
 %npc_attacking_uid = uid;
 
 
-[opnpc1,gnome_baller1] @player_gnomeball_tackle(30, 200);
-[opnpc1,gnome_baller5] @player_gnomeball_tackle(30, 200);
-[opnpc1,gnome_baller9] @player_gnomeball_tackle(30, 220);
+[opnpc1,gnomeballer_red] @player_gnomeball_tackle(30, 200);
+[opnpc1,gnomeballer_orange] @player_gnomeball_tackle(30, 200);
+[opnpc1,gnomeballer_yellow] @player_gnomeball_tackle(30, 220);
 [opnpct,gnomeball:com_5] 
 switch_npc (npc_type) {
-    case gnome_baller1, gnome_baller5 : @player_gnomeball_tackle(30, 200);
-    case gnome_baller9 : @player_gnomeball_tackle(30, 220);
-    case gnome_baller2, gnome_baller6, gnome_baller10 : @player_gnomeball_tackle_carrier;
+    case gnomeballer_red, gnomeballer_orange : @player_gnomeball_tackle(30, 200);
+    case gnomeballer_yellow : @player_gnomeball_tackle(30, 220);
+    case gnomeballer_red_withball, gnomeballer_orange_withball, gnomeballer_yellow_withball : @player_gnomeball_tackle_carrier;
     case default : mes("You can only tackle gnome ballers."); // complete guess
 }
 
@@ -87,14 +88,15 @@ npc_delay(0);
 anim(human_gnome_tackle, 33);
 npc_anim(midget_tackled, 30);
 p_delay(0);
-npc_changetype_keepall(npc_param(gnome_tackled), 11);
+npc_changetype_keepall(npc_param(gnome_tackled), ^max_32bit_int);
 npc_delay(10);
+npc_changetype_keepall(npc_param(gnome_original), ^max_32bit_int);
 npc_anim(midget_getup, 0);
 %npc_attacking_uid = null;
 
-[opnpc1,gnome_baller2] @player_gnomeball_tackle_carrier;
-[opnpc1,gnome_baller6] @player_gnomeball_tackle_carrier;
-[opnpc1,gnome_baller10] @player_gnomeball_tackle_carrier;
+[opnpc1,gnomeballer_red_withball] @player_gnomeball_tackle_carrier;
+[opnpc1,gnomeballer_orange_withball] @player_gnomeball_tackle_carrier;
+[opnpc1,gnomeballer_yellow_withball] @player_gnomeball_tackle_carrier;
 
 [label,player_gnomeball_tackle_carrier]
 if (inv_getobj(worn, ^wearpos_rhand) = ball_gnomeball_game) {
@@ -127,7 +129,8 @@ npc_anim(midget_tackled, 30);
 p_delay(0);
 inv_setslot(worn, ^wearpos_rhand, ball_gnomeball_game, 1);
 ~update_all(null);
-npc_changetype_keepall(npc_param(gnome_tackled), 11);
+npc_changetype_keepall(npc_param(gnome_tackled), ^max_32bit_int);
 npc_delay(10);
+npc_changetype_keepall(npc_param(gnome_original), ^max_32bit_int);
 npc_anim(midget_getup, 0);
 %npc_attacking_uid = null;

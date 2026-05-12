@@ -708,7 +708,7 @@ x=116
 y=191
 width=80
 height=14
-script1op1=pushvar,smithing_level
+script1op1=pushvar,modified_smith
 script1=gt,9
 center=yes
 font=p12
@@ -734,7 +734,7 @@ x=18
 y=141
 width=80
 height=14
-script1op1=pushvar,smithing_level
+script1op1=pushvar,modified_smith
 script1=gt,4
 center=yes
 font=p12
@@ -747,7 +747,7 @@ x=18
 y=241
 width=80
 height=14
-script1op1=pushvar,smithing_level
+script1op1=pushvar,modified_smith
 script1=gt,6
 center=yes
 font=p12
@@ -760,7 +760,7 @@ x=18
 y=191
 width=80
 height=14
-script1op1=pushvar,smithing_level
+script1op1=pushvar,modified_smith
 script1=gt,5
 center=yes
 font=p12
@@ -773,7 +773,7 @@ x=18
 y=291
 width=80
 height=14
-script1op1=pushvar,smithing_level
+script1op1=pushvar,modified_smith
 script1=gt,14
 center=yes
 font=p12
@@ -786,7 +786,7 @@ x=73
 y=219
 width=34
 height=14
-script1op1=pushvar,smithing_bars
+script1op1=pushvar,smithbars
 script1=gt,1
 center=yes
 font=p12
@@ -801,7 +801,7 @@ x=73
 y=269
 width=33
 height=14
-script1op1=pushvar,smithing_bars
+script1op1=pushvar,smithbars
 script1=gt,2
 font=p12
 shadowed=yes
@@ -815,7 +815,7 @@ x=116
 y=91
 width=80
 height=14
-script1op1=pushvar,smithing_level
+script1op1=pushvar,modified_smith
 script1=gt,1
 center=yes
 font=p12
@@ -828,7 +828,7 @@ x=116
 y=241
 width=80
 height=14
-script1op1=pushvar,smithing_level
+script1op1=pushvar,modified_smith
 script1=gt,10
 center=yes
 font=p12
@@ -841,7 +841,7 @@ x=116
 y=141
 width=80
 height=14
-script1op1=pushvar,smithing_level
+script1op1=pushvar,modified_smith
 script1=gt,2
 center=yes
 font=p12
@@ -854,7 +854,7 @@ x=18
 y=91
 width=80
 height=14
-script1op1=pushvar,smithing_level
+script1op1=pushvar,modified_smith
 script1=gt,0
 center=yes
 font=p12
@@ -867,7 +867,7 @@ x=171
 y=219
 width=33
 height=14
-script1op1=pushvar,smithing_bars
+script1op1=pushvar,smithbars
 script1=gt,2
 font=p12
 shadowed=yes
@@ -882,28 +882,28 @@ y=209
 width=80
 height=46
 
-[com_102]
+[com_101]
 layer=other_layer
 type=text
 x=0
 y=32
 width=80
 height=14
-script1op1=pushvar,smithing_level
+script1op1=pushvar,modified_smith
 script1=gt,4
 center=yes
 font=p12
 text=other
 activecolour=0xFFFFFF
 
-[com_103]
+[com_137]
 layer=other_layer
 type=text
 x=55
 y=10
 width=25
 height=14
-script1op1=pushvar,smithing_bars
+script1op1=pushvar,smithbars
 script1=gt,0
 center=yes
 font=p12
@@ -912,158 +912,172 @@ text=1bar
 colour=0xC00000
 activecolour=0x00C000
 
-[com_104]
+[com_103]
 type=text
 x=214
 y=91
 width=80
 height=14
-script1op1=pushvar,smithing_level
+script1op1=pushvar,modified_smith
 script1=gt,11
 center=yes
 font=p12
 text=Chain body
 activecolour=0xFFFFFF
 
-[com_105]
+[com_104]
 type=text
 x=214
 y=141
 width=80
 height=14
-script1op1=pushvar,smithing_level
+script1op1=pushvar,modified_smith
 script1=gt,16
 center=yes
 font=p12
 text=Plate legs
 activecolour=0xFFFFFF
 
-[com_106]
+[com_105]
 type=text
 x=214
 y=191
 width=80
 height=14
-script1op1=pushvar,smithing_level
+script1op1=pushvar,modified_smith
 script1=gt,16
 center=yes
 font=p12
 text=Plate skirt
 activecolour=0xFFFFFF
 
-[com_107]
+[com_106]
 type=text
 x=214
 y=241
 width=80
 height=14
-script1op1=pushvar,smithing_level
+script1op1=pushvar,modified_smith
 script1=gt,18
 center=yes
 font=p12
 text=Plate body
 activecolour=0xFFFFFF
 
-[com_108]
+[com_107]
 type=text
 x=312
 y=91
 width=80
 height=14
-script1op1=pushvar,smithing_level
+script1op1=pushvar,modified_smith
 script1=gt,3
 center=yes
 font=p12
 text=Medium helm
 activecolour=0xFFFFFF
 
-[com_109]
+[com_108]
 type=text
 x=312
 y=141
 width=80
 height=14
-script1op1=pushvar,smithing_level
+script1op1=pushvar,modified_smith
 script1=gt,7
 center=yes
 font=p12
 text=Full helm
 activecolour=0xFFFFFF
 
-[com_110]
+[com_109]
 type=text
 x=312
 y=191
 width=80
 height=14
-script1op1=pushvar,smithing_level
+script1op1=pushvar,modified_smith
 script1=gt,8
 center=yes
 font=p12
 text=Square shield
 activecolour=0xFFFFFF
 
-[com_111]
+[com_110]
 type=text
 x=312
 y=241
 width=80
 height=14
-script1op1=pushvar,smithing_level
+script1op1=pushvar,modified_smith
 script1=gt,12
 center=yes
 font=p12
 text=Kite shield
 activecolour=0xFFFFFF
 
-[com_112]
+[com_111]
 type=text
 x=406
 y=191
 width=88
 height=14
-script1op1=pushvar,smithing_level
+script1op1=pushvar,modified_smith
 script1=gt,7
 center=yes
 font=p12
 text=Throwing knives
 activecolour=0xFFFFFF
 
-[com_113]
+[com_112]
 type=text
 x=410
 y=91
 width=80
 height=14
-script1op1=pushvar,smithing_level
+script1op1=pushvar,modified_smith
 script1=gt,4
-script2op1=pushvar,option1
+script2op1=pushvar,if1
 script2=eq,1
 center=yes
 font=p12
 text=Dart tips
 activecolour=0xFFFFFF
 
-[com_114]
+[com_113]
 type=text
 x=410
 y=141
 width=80
 height=14
-script1op1=pushvar,smithing_level
+script1op1=pushvar,modified_smith
 script1=gt,5
 center=yes
 font=p12
 text=Arrow heads
 activecolour=0xFFFFFF
 
-[com_115]
+[com_114]
 type=text
 x=269
 y=69
 width=33
 height=14
-script1op1=pushvar,smithing_bars
+script1op1=pushvar,smithbars
+script1=gt,2
+font=p12
+shadowed=yes
+text=3bars
+colour=0xC00000
+activecolour=0x00C000
+
+[com_115]
+type=text
+x=269
+y=119
+width=33
+height=14
+script1op1=pushvar,smithbars
 script1=gt,2
 font=p12
 shadowed=yes
@@ -1074,10 +1088,10 @@ activecolour=0x00C000
 [com_116]
 type=text
 x=269
-y=119
+y=169
 width=33
 height=14
-script1op1=pushvar,smithing_bars
+script1op1=pushvar,smithbars
 script1=gt,2
 font=p12
 shadowed=yes
@@ -1088,24 +1102,10 @@ activecolour=0x00C000
 [com_117]
 type=text
 x=269
-y=169
-width=33
-height=14
-script1op1=pushvar,smithing_bars
-script1=gt,2
-font=p12
-shadowed=yes
-text=3bars
-colour=0xC00000
-activecolour=0x00C000
-
-[com_118]
-type=text
-x=269
 y=219
 width=33
 height=14
-script1op1=pushvar,smithing_bars
+script1op1=pushvar,smithbars
 script1=gt,4
 font=p12
 shadowed=yes
@@ -1113,13 +1113,28 @@ text=5bars
 colour=0xC00000
 activecolour=0x00C000
 
-[com_119]
+[com_118]
 type=text
 x=367
 y=119
 width=34
 height=14
-script1op1=pushvar,smithing_bars
+script1op1=pushvar,smithbars
+script1=gt,1
+center=yes
+font=p12
+shadowed=yes
+text=2bars
+colour=0xC00000
+activecolour=0x00C000
+
+[com_119]
+type=text
+x=367
+y=169
+width=34
+height=14
+script1op1=pushvar,smithbars
 script1=gt,1
 center=yes
 font=p12
@@ -1131,25 +1146,10 @@ activecolour=0x00C000
 [com_120]
 type=text
 x=367
-y=169
-width=34
-height=14
-script1op1=pushvar,smithing_bars
-script1=gt,1
-center=yes
-font=p12
-shadowed=yes
-text=2bars
-colour=0xC00000
-activecolour=0x00C000
-
-[com_121]
-type=text
-x=367
 y=219
 width=33
 height=14
-script1op1=pushvar,smithing_bars
+script1op1=pushvar,smithbars
 script1=gt,2
 font=p12
 shadowed=yes
@@ -1157,13 +1157,13 @@ text=3bars
 colour=0xC00000
 activecolour=0x00C000
 
-[com_122]
+[com_121]
 type=text
 x=73
 y=169
 width=34
 height=14
-script1op1=pushvar,smithing_bars
+script1op1=pushvar,smithbars
 script1=gt,1
 center=yes
 font=p12
@@ -1172,7 +1172,7 @@ text=2bars
 colour=0xC00000
 activecolour=0x00C000
 
-[com_123]
+[com_122]
 type=text
 x=12
 y=30
@@ -1184,13 +1184,13 @@ shadowed=yes
 text=What would you like to make?
 colour=0xFFFF00
 
-[com_124]
+[com_123]
 type=text
 x=171
 y=169
 width=33
 height=14
-script1op1=pushvar,smithing_bars
+script1op1=pushvar,smithbars
 script1=gt,2
 font=p12
 shadowed=yes
@@ -1253,13 +1253,28 @@ option1=Make set
 option2=Make 5 sets
 option3=Make 10 sets
 
-[com_130]
+[com_129]
 type=text
 x=73
 y=119
 width=25
 height=14
-script1op1=pushvar,smithing_bars
+script1op1=pushvar,smithbars
+script1=gt,0
+center=yes
+font=p12
+shadowed=yes
+text=1bar
+colour=0xC00000
+activecolour=0x00C000
+
+[com_130]
+type=text
+x=73
+y=69
+width=25
+height=14
+script1op1=pushvar,smithbars
 script1=gt,0
 center=yes
 font=p12
@@ -1270,11 +1285,11 @@ activecolour=0x00C000
 
 [com_131]
 type=text
-x=73
+x=171
 y=69
 width=25
 height=14
-script1op1=pushvar,smithing_bars
+script1op1=pushvar,smithbars
 script1=gt,0
 center=yes
 font=p12
@@ -1285,11 +1300,11 @@ activecolour=0x00C000
 
 [com_132]
 type=text
-x=171
+x=367
 y=69
 width=25
 height=14
-script1op1=pushvar,smithing_bars
+script1op1=pushvar,smithbars
 script1=gt,0
 center=yes
 font=p12
@@ -1300,11 +1315,11 @@ activecolour=0x00C000
 
 [com_133]
 type=text
-x=367
+x=465
 y=69
 width=25
 height=14
-script1op1=pushvar,smithing_bars
+script1op1=pushvar,smithbars
 script1=gt,0
 center=yes
 font=p12
@@ -1315,11 +1330,11 @@ activecolour=0x00C000
 
 [com_134]
 type=text
-x=465
-y=69
+x=171
+y=119
 width=25
 height=14
-script1op1=pushvar,smithing_bars
+script1op1=pushvar,smithbars
 script1=gt,0
 center=yes
 font=p12
@@ -1330,11 +1345,11 @@ activecolour=0x00C000
 
 [com_135]
 type=text
-x=171
+x=465
 y=119
 width=25
 height=14
-script1op1=pushvar,smithing_bars
+script1op1=pushvar,smithbars
 script1=gt,0
 center=yes
 font=p12
@@ -1346,25 +1361,10 @@ activecolour=0x00C000
 [com_136]
 type=text
 x=465
-y=119
-width=25
-height=14
-script1op1=pushvar,smithing_bars
-script1=gt,0
-center=yes
-font=p12
-shadowed=yes
-text=1bar
-colour=0xC00000
-activecolour=0x00C000
-
-[com_137]
-type=text
-x=465
 y=169
 width=25
 height=14
-script1op1=pushvar,smithing_bars
+script1op1=pushvar,smithbars
 script1=gt,0
 center=yes
 font=p12
@@ -1387,7 +1387,7 @@ x=0
 y=32
 width=80
 height=14
-script1op1=pushvar,smithing_level
+script1op1=pushvar,modified_smith
 script1=gt,4
 center=yes
 font=p12
@@ -1401,7 +1401,7 @@ x=55
 y=10
 width=25
 height=14
-script1op1=pushvar,smithing_bars
+script1op1=pushvar,smithbars
 script1=gt,0
 center=yes
 font=p12
@@ -1409,3 +1409,51 @@ shadowed=yes
 text=1bar
 colour=0xC00000
 activecolour=0x00C000
+
+[claws_layer]
+type=layer
+x=116
+y=259
+width=89
+height=46
+
+[com_141]
+layer=claws_layer
+type=text
+x=55
+y=10
+width=34
+height=14
+script1op1=pushvar,smithbars
+script1=gt,1
+center=yes
+font=p12
+shadowed=yes
+text=2bars
+colour=0xC00000
+activecolour=0x00C000
+
+[com_142]
+layer=claws_layer
+type=text
+x=0
+y=32
+width=80
+height=14
+script1op1=pushvar,modified_smith
+script1=gt,13
+center=yes
+font=p12
+text=Claws
+activecolour=0xFFFFFF
+
+[column_claws]
+layer=claws_layer
+type=inv
+x=24
+y=1
+width=4
+height=4
+option1=Make
+option2=Make 5
+option3=Make 10

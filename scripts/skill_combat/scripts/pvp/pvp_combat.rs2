@@ -17,6 +17,9 @@ if ($attackrange <= 1 | $distance > $attackrange) {
 @pvp_combat_start;
 
 [label,pvp_combat_start]
+if (~sa_enabled = true) {
+    @pvp_special_attack;
+}
 if (%damagetype = ^ranged_style) {
     @pvp_ranged_attack;
 }
@@ -31,7 +34,8 @@ if (~player_autocast_enabled = true) {
 def_int $combat_level_diff = abs(sub(~player_combat_level, ~.player_combat_level));
 def_int $wilderness_level = min(~wilderness_level(coord), ~wilderness_level(.coord));
 if ($wilderness_level < 1) {
-    mes("You can't attack players who aren't in the Wilderness.");
+    // http://i2.photobucket.com/albums/y18/Fallingdeath/anotherkill.png
+    mes("You can't attack players who aren't in the wilderness.");
     return(false);
 }
 if ($wilderness_level < $combat_level_diff) {
@@ -84,16 +88,16 @@ if (~pvp_in_combat_check = false) {
 if (map_multiway(.coord) = false) {
     // if you have been attacked in the last 8 ticks, and the last person to attack you isnt your opponent
     // or an npc attacked you
-    // https://cdn.discordapp.com/attachments/1126857544523063367/1332910417856565249/found-old-drive-with-rsdemon-and-some-screenshots-v0-36uacu7glqzd1.png?ex=67999c0f&is=67984a8f&hm=a4c34a40791a120dba06adebb15a652a722e486fddd6d5a9e47ee9aa2c329fb3&
-    // 2006 year / osrs mes I'm already under attack.
-    // here's one from 2004: https://youtu.be/IC2n8t76DDY?t=34
+    // pvp's "I'm already under attack." has a period (most likely):
+    // - 2005: https://storage.googleapis.com/tannerdino/images/owned___1.png
+    // - 2004: https://storage.googleapis.com/tannerdino/images/scubamcm69arrow.jpg
     if (add(%lastcombat, 8) > map_clock) {
         if (%pk_predator1 ! .uid & %pk_predator1 ! null) {
-            mes("I'm already under attack");
+            mes("I'm already under attack.");
             return(false);
         }
         if (npc_finduid(%aggressive_npc) = true) {
-            mes("I'm already under attack");
+            mes("I'm already under attack.");
             return(false);
         }
     }
@@ -157,7 +161,7 @@ stat_advance(hitpoints, scale($multiplier, 1000, scale(133, 100, $base)));
 [proc,.pvp_damage](int $delay, int $damage)
 .if_close;
 if (.p_finduid(.uid) = true) {
-    .p_preventlogout("You can't log out until 10 seconds after the end of combat.", 16);
+    ~.combat_preventlogout;
 }
 if ($damage < 0) {
     return;

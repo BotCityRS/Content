@@ -188,7 +188,7 @@ members=yes
 stackable=yes
 weight=18oz
 
-[chefshat]
+[chefs_hat]
 name=Chef's hat
 desc=What a silly hat.
 cost=2
@@ -220,6 +220,7 @@ model=model_2591_obj
 2dxan=132
 weight=500g
 category=category_131
+param=party_clean_exempt,^true
 
 [easter_egg]
 name=Easter egg
@@ -232,6 +233,7 @@ model=model_2534_obj
 2dxan=2044
 weight=3oz
 category=category_59
+param=party_clean_exempt,^true
 
 // Typo of `bannana` in model name is Jagex consistent.
 [banana]
@@ -404,6 +406,7 @@ name=Chocolate dust
 desc=It's ground up chocolate.
 param=gnome_topping,^true
 param=cocktail_message,You sprinkle the chocolate dust over the drink.
+param=brew_potion_struct,3dose1energy
 
 [pot_empty]
 name=Pot
@@ -442,3 +445,23 @@ model=model_2398_obj
 2dyan=88
 2dxan=292
 weight=600g
+
+[moonlight_mead]
+name=Moonlight mead
+desc=A foul smelling brew.
+recol1s=25025
+recol1d=11330
+recol2s=31367
+recol2d=14468
+cost=5
+iop1=Drink
+members=yes
+model=model_2491_obj
+2dxof=-3
+2dyof=2
+2dzoom=660
+2dyan=1904
+2dxan=140
+weight=550g
+category=alcoholic_drinks
+param=next_obj_stage,beer_glass

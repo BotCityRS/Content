@@ -1,22 +1,20 @@
-[swamp_bubbles_a]
+[swampbubbles]
 name=Swamp bubbles
 desc=The noxious liquid bubbles horribly.
 model=model_swamp_bubbles
 anim=swampbubs
-hasalpha=yes
 
-[swamp_bubbles_b]
+[swampbubbles_swamp]
 name=Swamp bubbles
 desc=The noxious liquid bubbles horribly.
 model=model_swamp_bubbles
 anim=swampbubs
-hasalpha=yes
 recol1s=3297
 recol1d=1418
 
 [rantzogrecaveentrance]
 name=Cave entrance
-desc=The entrance to Rantz's cave.4
+desc=The entrance to Rantz's cave
 model=model_loc_2
 width=3
 length=2

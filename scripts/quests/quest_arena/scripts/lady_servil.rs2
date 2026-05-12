@@ -1,5 +1,5 @@
 [opnpc1,lady_servil]
-switch_int(%arena_progress) {
+switch_int(%arenaquest) {
     case ^arena_complete, ^arena_complete_defeated_genkhazard : // mesanims guessed
         ~chatplayer("<p,neutral>Hello Lady Servil.");
         ~chatnpc("<p,happy>Oh hello my dear. My husband and son are resting while I wait for the cart fixer.");
@@ -10,7 +10,7 @@ switch_int(%arena_progress) {
         ~chatnpc("<p,shock>You're alive, I thought Khazard's men had taken you.");
         ~chatnpc("<p,happy>My son and husband are safe and recovering at home. Without you they would certainly be dead. I am truly grateful for your service.");
         ~chatnpc("<p,happy>All I can offer in return is material wealth. Please take these coins as a sign of my gratitude.");
-        queue(arena_quest_complete, 0);
+        queue(arena_quest_complete, 0, 0);
     case ^arena_entered_ogre_fight, ^arena_defeated_ogre, ^arena_sent_jail, ^arena_defeated_scorpion, ^arena_defeated_bouncer :
         ~chatplayer("<p,neutral>Lady Servil. I freed your son, however he has returned to the arena to help your husband.");
         ~chatnpc("<p,shock>Oh no, they won't stand a chance. Please go back and help.");
@@ -37,8 +37,8 @@ switch_int(%arena_progress) {
                 ~chatplayer("<p,quiz>General Khazard?");
                 ~chatnpc("<p,sad>He's been after me ever since I declined his hand in marriage.");
                 ~chatnpc("<p,sad>Now he's kidnapped my husband and son to fight in his battle arena to the south of here. I hate to think what he'll do to them. He's a sick and twisted man.");
-                %arena_progress = ^arena_started;
-                ~send_quest_progress(questlist:arena, %arena_progress, ^arena_complete);
+                %arenaquest = ^arena_started;
+                ~send_quest_progress(questlist:arena, %arenaquest, ^arena_complete);
                 ~chatplayer("<p,neutral>I'll try my best to return your family.");
                 ~chatnpc("<p,sad>Please do. My family is wealthy and can reward you handsomely. I'll be waiting here for you.");
         }

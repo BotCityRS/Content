@@ -1,13 +1,3 @@
-[debugproc,cat]
-if_close;
-if (p_finduid(uid) = true) {
-    def_int $hunger = getbit_range(%cat_growth, 0, 4);
-    def_int $attent = getbit_range(%cat_growth, 5, 10);
-    def_int $growth = getbit_range(%cat_growth, 11, 19);
-    def_int $vermin = getbit_range(%cat_growth, 20, 26);
-    mes("Hunger: <tostring($hunger)> || Attent: <tostring($attent)> || Growth: <tostring($growth)> || Vermin: <tostring($vermin)>"); 
-}
-
 [ai_timer,_petcat]
 if (finduid(%npc_attacking_uid) = true) {
     if (coordy(coord) ! coordy(npc_coord) | npc_range(coord) > 15) {
@@ -91,9 +81,27 @@ switch_int (getbit_range(%cat_growth, 5, 10)) {
         ~follower_death;
 }
 
-[opheld5,_kitten] ~cat_drop; //kitten
-[opheld5,_cat] ~cat_drop; //cat
-[opheld5,_overgrown] ~cat_drop; //overgrown
+[opheld5,kittenobject] ~cat_drop;
+[opheld5,kittenobject_light] ~cat_drop;
+[opheld5,kittenobject_brown] ~cat_drop;
+[opheld5,kittenobject_black] ~cat_drop;
+[opheld5,kittenobject_browngrey] ~cat_drop;
+[opheld5,kittenobject_bluegrey] ~cat_drop;
+
+[opheld5,growncatobject] ~cat_drop;
+[opheld5,growncatobject_light] ~cat_drop;
+[opheld5,growncatobject_brown] ~cat_drop;
+[opheld5,growncatobject_black] ~cat_drop;
+[opheld5,growncatobject_browngrey] ~cat_drop;
+[opheld5,growncatobject_bluegrey] ~cat_drop;
+
+[opheld5,overgrowncatobject] ~cat_drop;
+[opheld5,overgrowncatobject_light] ~cat_drop;
+[opheld5,overgrowncatobject_brown] ~cat_drop;
+[opheld5,overgrowncatobject_black] ~cat_drop;
+[opheld5,overgrowncatobject_browngrey] ~cat_drop;
+[opheld5,overgrowncatobject_bluegrey] ~cat_drop;
+
 
 [opnpcu,_petcat]
 if (%npc_attacking_uid ! uid | %follower_uid ! npc_uid) {

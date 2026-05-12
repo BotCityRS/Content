@@ -1,6 +1,6 @@
 // text and mesanims are taken from OSRS
-[opnpc1,chompybird_rantz]
-if(%chompybird_progress >= ^chompybird_rantz_gave_player_bow & ~obj_gettotal(ogre_bow) = 0) {
+[opnpc1,rantz]
+if(%chompybird >= ^chompybird_rantz_gave_player_bow & ~obj_gettotal(ogre_bow) = 0) {
     ~chatplayer("<p,neutral>Hey, Rantz, I've lost the 'stabbie chucker', do you have another one please?");
     def_int $cost = ~random_range(500, 550);
     ~chatnpc("<p,neutral>Mee's has, but is not for freeness, dis one cost <tostring($cost)> of da gold coinses. Does you wants it?");
@@ -22,7 +22,7 @@ if(%chompybird_progress >= ^chompybird_rantz_gave_player_bow & ~obj_gettotal(ogr
 @rantz_main_dialogue;
 
 [label,rantz_main_dialogue]
-switch_int(%chompybird_progress) {
+switch_int(%chompybird) {
     case ^chompybird_not_started :
         ~chatnpc("<p,neutral>Hey you creature! Make me some stabbers! I wanna hunt da chompy?");
 
@@ -45,8 +45,8 @@ switch_int(%chompybird_progress) {
                 $op = null;
                 ~chatplayer("<p,neutral>OK, I'll make you some 'stabbers'.");
                 ~chatnpc("<p,neutral>Good you creature, you need sticksies from achey tree and stabbies from dog bones.");
-                %chompybird_progress = ^chompybird_started;
-                ~send_quest_progress(questlist:chompybird, %chompybird_progress, ^chompybird_complete);
+                %chompybird = ^chompybird_started;
+                ~send_quest_progress(questlist:chompybird, %chompybird, ^chompybird_complete);
             } else if($op = 4) {
                 $op = null;
                 ~chatplayer("<p,neutral>Er, make you're own 'stabbers'!");
@@ -68,7 +68,7 @@ switch_int(%chompybird_progress) {
             ~chatnpc("<p,sad>Dat's a pidy... but maybe Rantz can help da creature?");
             @toadies_questions;
         } else {
-            %chompybird_progress = ^chompybird_shown_toad;
+            %chompybird = ^chompybird_shown_toad;
             ~chatplayer("<p,neutral>Yes, I have a 'fatsy toady' for you, here look!");
             @show_toad;
         }
@@ -100,7 +100,7 @@ switch_int(%chompybird_progress) {
                         ~chatnpc("<p,angry>Oh, ok...I lend you other stabby thrower... but creature don't better cry when it hurts itself.");
 
                         inv_add(inv, ogre_bow, 1);
-                        %chompybird_progress = ^chompybird_rantz_gave_player_bow;
+                        %chompybird = ^chompybird_rantz_gave_player_bow;
                         ~objbox(ogre_bow,"Rantz hands over an ogre bow. It's huge! You can|barely drawn back the string!", 250, 0, divide(^objbox_height, 2));
                     case 2 :
                         ~chatplayer("<p,angry>Oh suit yourself, you'll just have to go hungry.");
@@ -121,18 +121,20 @@ switch_int(%chompybird_progress) {
         @hand_chompy_to_rantz;
     case ^chompybird_complete :
         ~chatnpc("<p,neutral>Hey deyr, t'anks for da chompy, it was scrumbly!");
-        // No chompy bird hats yet
+        ~chatplayer("<p,neutral>Hey, I hear you're giving away free hats!");
+        ~chatnpc("<p,neutral>Huh, dat's a true thing but you's godda be da good shooter wiv da stabbie chucker and stick lotsa chompies for da hatsie.");
+        @multi5("What are the hats like?", rantz_hatslike, "Can you show me the hats please?", rantz_showhats, "How many chompies do I have to stick?", rantz_stick, "Can I have a hat please?", rantz_givehats, "Ok, thanks.", rantz_ok);
 }
 
 [label,rantz_show_chompy]
 ~objbox(raw_chompy,"You show Rantz the freshly plucked chompy carcass.", 250, 0, divide(^objbox_height, 2));
 
-if(%chompybird_progress < ^chompybird_player_killed_chompy) {
+if(%chompybird < ^chompybird_player_killed_chompy) {
     ~chatnpc("<p,angry>Dat's a rotten chompy, did you shoot that creature? Is stinking bad, I's thinks it's too old. Go shoot your own chompy bird.");
     return;
 }
 ~chatnpc("<p,angry>Dat's a great chompy, you musta got a lucky shot wiv|da stabbie chucker.");
-%chompybird_progress = ^chompybird_told_to_cook_chompy;
+%chompybird = ^chompybird_told_to_cook_chompy;
 if (random(1) = 0) {
     %chompybird_kills = setbit(%chompybird_kills, ^chompybird_varbit_rantz_flavour);
 } else {
@@ -155,21 +157,21 @@ if (testbit(%chompybird_kills, ^chompybird_varbit_rantz_flavour) = ^true) {
 ~chatnpc("<p,angry>Yep, da spit's over der! Last time Rantz did yummies,|got very bad, did bad things to food... and belly.");
 ~chatplayer("<p,angry>HUH!");
 
-[opnpcu,chompybird_rantz]
+[opnpcu,rantz]
 switch_obj(last_useitem) {
     case raw_chompy :
-        if (%chompybird_progress < ^chompybird_player_killed_chompy) {
+        if (%chompybird < ^chompybird_player_killed_chompy) {
             ~chatnpc("<p,angry>Erk! Da's a yukky chompy, I's wants a yummie chompy!");
             @return_to_rantz;
             return;
         }
 
-        if (%chompybird_progress = ^chompybird_player_killed_chompy) {
+        if (%chompybird = ^chompybird_player_killed_chompy) {
             @rantz_show_chompy;
             return;
         }
 
-        if (%chompybird_progress = ^chompybird_told_to_cook_chompy) {
+        if (%chompybird = ^chompybird_told_to_cook_chompy) {
             ~objbox(raw_chompy,"You show Rantz the freshly plucked chompy carcass.", 250, 0, divide(^objbox_height, 2));
             @rantz_tell_chompy_flavour;
             return;
@@ -179,7 +181,7 @@ switch_obj(last_useitem) {
 
     case cooked_s_chompy :
         ~objbox(cooked_s_chompy, "You show the seasoned chompy to Rantz.", 250, 0, divide(^objbox_height, 2));
-        if (%chompybird_progress = ^chompybird_chompy_cooked) {
+        if (%chompybird = ^chompybird_chompy_cooked) {
             @hand_chompy_to_rantz;
             return;
         }
@@ -193,19 +195,19 @@ switch_obj(last_useitem) {
     case ogre_arrow :
         // singular "Arrow" is correct on OSRS
         ~objbox(ogre_arrow_5,"You show Rantz the ogre arrow.", 250, 0, divide(^objbox_height, 2));
-        if (%chompybird_progress = ^chompybird_not_started) {
+        if (%chompybird = ^chompybird_not_started) {
             ~chatnpc("<p,angry>Don't creature threaten Rantz with pointy stabbers!");
             return;
         }
 
-        if (%chompybird_progress = ^chompybird_given_arrows) {
+        if (%chompybird = ^chompybird_given_arrows) {
             ~chatnpc("<p,neutral>Creature already given Rantz stabbers, Dey's worser at flying dan a dead dog.");
             return;
         }
 
         ~chatnpc("<p,neutral>Hey you creature..you made da stabbers|Dat's good creature!");
         
-        if (%chompybird_progress = ^chompybird_started & testbit(%chompybird_kills, ^chompybird_varbit_made_arrows) = ^false) { 
+        if (%chompybird = ^chompybird_started & testbit(%chompybird_kills, ^chompybird_varbit_made_arrows) = ^false) { 
             ~chatnpc("<p,angry>Hey, deese stabbers no good... did you make dem you's self? You go make dem stabbers for me creature! Don't get old ones or from other creatures.");
             @no_arrows_choice;
             return;
@@ -214,7 +216,7 @@ switch_obj(last_useitem) {
         @attempt_give_rantz_arrows;
 
     case bloated_toad :
-        if (%chompybird_progress >= ^chompybird_shown_toad) {
+        if (%chompybird >= ^chompybird_shown_toad) {
             ~objbox(bloated_toad,"You show the bloated toad to Rantz.", 250, 0, divide(^objbox_height, 2));
             ~chatnpc("<p,neutral>Hey creature got da fatsy toady Is you's gonna stick da chompy?");
             return;
@@ -270,7 +272,7 @@ else {
 
 [label,give_rantz_arrows]
 inv_del(inv, ogre_arrow, 6);
-%chompybird_progress = ^chompybird_given_arrows;
+%chompybird = ^chompybird_given_arrows;
 ~objbox(ogre_arrow_5,"Rantz takes six ogre arrows off you.", 250, 0, divide(^objbox_height, 2));
 
 ~chatnpc("<p,happy>Ahh, der creature has dem... goodly, goodly. Now us can stick der chompy bird...");
@@ -283,8 +285,8 @@ switch_int(~p_choice5("How do we make the chompys come?", 1, "What are 'fatsy to
     case 1 :
         ~chatplayer("<p,neutral>How do we make the chompys come?");
         ~chatnpc("<p,neutral>Chompys love da fatsy toadies. Toadies get big on der swamp gas and der chompys are licking der lips for em as me is licking lips for da chompy. Da chompys don't like da smaller toadies from nearby swampy.");
-        if (%chompybird_progress < ^chompybird_kids_play_with_toad) {
-            %chompybird_progress = ^chompybird_kids_play_with_toad;
+        if (%chompybird < ^chompybird_kids_play_with_toad) {
+            %chompybird = ^chompybird_kids_play_with_toad;
         }
         ~chatnpc("<p,happy>Dey's fussie eaters just like Rantz. Fycie an' Bugs play with toadies and blower dey's all times making fatsy toadies.");
         @toadies_questions;
@@ -314,7 +316,7 @@ cam_lookat(0_41_46_12_22, 25, 7, 7);
 cam_moveto(0_41_46_15_12, 900, 2, 2);
 hint_stop();
 hint_coord(^hint_center, 0_41_46_12_22, 0);
-queue(cr_queue, 0);
+queue(cr_queue, 0, 0);
 ~chatnpc("<p,neutral>Over 'dere creature, put da toadies over der!|@blu@~ The ogre points to a clearing to the south. ~");
 
 [label,show_toad]
@@ -335,16 +337,428 @@ if (inv_total(inv, cooked_s_chompy) < 1) {
 ~chatnpc("<p,happy>Tank's very much for da chompy...|Fycie an Bugs like very much da chompy yumms!|@blu@~ The family of ogres sit down together ~|@blu@~ and enjoy your well cooked chompy bird ~");
 ~chatplayer("<p,laugh>It's my pleasure!");
 inv_del(inv, cooked_s_chompy, 1);
-queue(quest_chompybird_complete, 0);
+queue(quest_chompybird_complete, 0, 0);
+
+[label,rantz_hatslike]
+~chatplayer("<p,neutral>What are the hats like?");
+// osrs linebreaks
+~chatnpc("<p,neutral>Huh der is this many colours:|@blu@~ Rantz holds up six fingers. ~|And der is dis many different hatsies:|@blu@~ Rantz holds up three fingers. ~");
+@multi5("How many chompies do I have to stick?", rantz_stick, "How do I get a hat?", rantz_howhat, "Can I have a hat please?", rantz_givehats, "Can you show me the hats please?", rantz_showhats, "Ok, thanks.", rantz_ok);
+
+[label,rantz_stick]
+// https://chisel.weirdgloop.org/dialogue/content/103812, osrs not capitalized
+~chatplayer("<p,neutral>How many Chompies do I have to stick?");
+~chatnpc("<p,neutral>We'll dat's da fing wiv da hatsies, dey's many hatsies for da many chompies dat you stick. But you's godda get at least this many for a hat:|@blu@~ Rantz flashes his fingers. You think he means 30. ~");
+@multi5("What are the hats like?", rantz_hatslike, "Can you show me the hats please?", rantz_showhats, "How many chompies do I have to stick?", rantz_stick, "Can I have a hat please?", rantz_givehats, "Ok, thanks.", rantz_ok);
+
+[label,rantz_howhat]
+~chatplayer("<p,neutral>How do I get a hat?");
+~chatnpc("<p,neutral>If you creature shows me da bow wiv da notches on it, I'll give ya a flapper hat... is dat simple enough for you's creature?");
+@multi5("What are the hats like?", rantz_hatslike, "Can you show me the hats please?", rantz_showhats, "How many chompies do I have to stick?", rantz_stick, "Can I have a hat please?", rantz_givehats, "Ok, thanks.", rantz_ok);
+
+[label,rantz_showhats]
+~chatnpc("<p,neutral>Ok you's creature, here's da hatsies!|@blu@~ Rantz shows you the hats. ~");
+@rantz_hatmenu1;
+
+[label,rantz_hatmenu1]
+def_int $op = ~p_choice5_header("Ogre Bowman Hat.", 1, "Bowman Hat.", 2, "Ogre Yeoman Hat.", 3, "Yeoman Hat.", 4, "-- Hat Menu 2 --", 5, "@dbl@*** Hat Menu 1 ***");
+while($op ! 5) {
+    if($op = 1) {
+        ~objbox(cbhat1, "Ogre Bowman hat. 1 Feather Plain. Kills : 30", 250, 0, divide(^objbox_height, 2));
+        $op = ~p_choice5_header("Ogre Bowman Hat.", 1, "Bowman Hat.", 2, "Ogre Yeoman Hat.", 3, "Yeoman Hat.", 4, "-- Hat Menu 2 --", 5, "@dbl@*** Hat Menu 1 ***");
+    } else if($op = 2) {
+        ~objbox(cbhat2, "Bowman hat. 1 Feather green. Kills : 40", 250, 0, divide(^objbox_height, 2));
+        $op = ~p_choice5_header("Ogre Bowman Hat.", 1, "Bowman Hat.", 2, "Ogre Yeoman Hat.", 3, "Yeoman Hat.", 4, "-- Hat Menu 2 --", 5, "@dbl@*** Hat Menu 1 ***");
+    } else if($op = 3) {
+        ~objbox(cbhat3, "Ogre Yeoman Hat. 1 Feather Red. Kills : 50", 250, 0, divide(^objbox_height, 2));
+        $op = ~p_choice5_header("Ogre Bowman Hat.", 1, "Bowman Hat.", 2, "Ogre Yeoman Hat.", 3, "Yeoman Hat.", 4, "-- Hat Menu 2 --", 5, "@dbl@*** Hat Menu 1 ***");
+    } else if($op = 4) {
+        ~objbox(cbhat4, "Yeoman hat. 1 Feather Black. Kills : 70", 250, 0, divide(^objbox_height, 2));
+        $op = ~p_choice5_header("Ogre Bowman Hat.", 1, "Bowman Hat.", 2, "Ogre Yeoman Hat.", 3, "Yeoman Hat.", 4, "-- Hat Menu 2 --", 5, "@dbl@*** Hat Menu 1 ***");
+    }
+}
+@rantz_hatmenu2;
+
+[label,rantz_hatmenu2]
+def_int $op = ~p_choice5_header("Ogre Marksman Hat.", 1, "Marksman Hat.", 2, "Ogre Woodsman Hat.", 3, "Woodsman Hat.", 4, "-- Hat Menu 3 --", 5, "@dbl@*** Hat Menu 2 ***");
+while($op ! 5) {
+    if($op = 1) {
+        ~objbox(cbhat5, "Ogre Marksman hat. 1 Feather Rune. Kills : 95", 250, 0, divide(^objbox_height, 2));
+        $op = ~p_choice5_header("Ogre Marksman Hat.", 1, "Marksman Hat.", 2, "Ogre Woodsman Hat.", 3, "Woodsman Hat.", 4, "-- Hat Menu 3 --", 5, "@dbl@*** Hat Menu 2 ***");
+    } else if($op = 2) {
+        ~objbox(cbhat6, "Marksman hat. 1 Feather Gold. Kills : 125", 250, 0, divide(^objbox_height, 2));
+        $op = ~p_choice5_header("Ogre Marksman Hat.", 1, "Marksman Hat.", 2, "Ogre Woodsman Hat.", 3, "Woodsman Hat.", 4, "-- Hat Menu 3 --", 5, "@dbl@*** Hat Menu 2 ***");
+    } else if($op = 3) {
+        ~objbox(cbhat7, "Ogre Woodsman hat. 3 Feather plain. Kills : 170", 250, 0, divide(^objbox_height, 2));
+        $op = ~p_choice5_header("Ogre Marksman Hat.", 1, "Marksman Hat.", 2, "Ogre Woodsman Hat.", 3, "Woodsman Hat.", 4, "-- Hat Menu 3 --", 5, "@dbl@*** Hat Menu 2 ***");
+    } else if($op = 4) {
+        ~objbox(cbhat8, "Woodsman hat. 3 Feather Green. Kills : 225", 250, 0, divide(^objbox_height, 2));
+        $op = ~p_choice5_header("Ogre Marksman Hat.", 1, "Marksman Hat.", 2, "Ogre Woodsman Hat.", 3, "Woodsman Hat.", 4, "-- Hat Menu 3 --", 5, "@dbl@*** Hat Menu 2 ***");
+    }
+}
+@rantz_hatmenu3;
+
+[label,rantz_hatmenu3]
+def_int $op = ~p_choice5_header("Ogre Forester Hat.", 1, "Forester Hat.", 2, "Ogre Bowmaster Hat.", 3, "Bowmaster Hat.", 4, "-- Hat Menu 4 --", 5, "@dbl@*** Hat Menu 3 ***");
+while($op ! 5) {
+    if($op = 1) {
+        ~objbox(cbhat9, "Ogre Forester hat. 3 Feather Red. Kills : 300", 250, 0, divide(^objbox_height, 2));
+        $op = ~p_choice5_header("Ogre Forester Hat.", 1, "Forester Hat.", 2, "Ogre Bowmaster Hat.", 3, "Bowmaster Hat.", 4, "-- Hat Menu 4 --", 5, "@dbl@*** Hat Menu 3 ***");
+    } else if($op = 2) {
+        ~objbox(cbhat10, "Forester hat. 3 Feather black. Kills : 400", 250, 0, divide(^objbox_height, 2));
+        $op = ~p_choice5_header("Ogre Forester Hat.", 1, "Forester Hat.", 2, "Ogre Bowmaster Hat.", 3, "Bowmaster Hat.", 4, "-- Hat Menu 4 --", 5, "@dbl@*** Hat Menu 3 ***");
+    } else if($op = 3) {
+        ~objbox(cbhat11, "Ogre Bowmaster hat. 3 Feather Rune. Kills : 550", 250, 0, divide(^objbox_height, 2));
+        $op = ~p_choice5_header("Ogre Forester Hat.", 1, "Forester Hat.", 2, "Ogre Bowmaster Hat.", 3, "Bowmaster Hat.", 4, "-- Hat Menu 4 --", 5, "@dbl@*** Hat Menu 3 ***");
+    } else if($op = 4) {
+        ~objbox(cbhat12, "Bowmaster hat. 3 Feather Gold. Kills : 700", 250, 0, divide(^objbox_height, 2));
+        $op = ~p_choice5_header("Ogre Forester Hat.", 1, "Forester Hat.", 2, "Ogre Bowmaster Hat.", 3, "Bowmaster Hat.", 4, "-- Hat Menu 4 --", 5, "@dbl@*** Hat Menu 3 ***");
+    }
+}
+@rantz_hatmenu4;
+
+[label,rantz_hatmenu4]
+def_int $op = ~p_choice4_header("Ogre Expert Hat.", 1, "Expert Hat.", 2, "Ogre Dragon Archer Hat.", 3, "-- Hat Menu 5 --", 4, "@dbl@*** Hat Menu 4 ***");
+while($op ! 4) {
+    if($op = 1) {
+        ~objbox(cbhat13, "Ogre Expert hat. 5 Feather Plain. Kills : 1000", 250, 0, divide(^objbox_height, 2));
+        $op = ~p_choice4_header("Ogre Expert Hat.", 1, "Expert Hat.", 2, "Ogre Dragon Archer Hat.", 3, "-- Hat Menu 5 --", 4, "@dbl@*** Hat Menu 4 ***");
+    } else if($op = 2) {
+        ~objbox(cbhat14, "Expert hat. 5 Feather Green. Kills : 1300", 250, 0, divide(^objbox_height, 2));
+        $op = ~p_choice4_header("Ogre Expert Hat.", 1, "Expert Hat.", 2, "Ogre Dragon Archer Hat.", 3, "-- Hat Menu 5 --", 4, "@dbl@*** Hat Menu 4 ***");
+    } else if($op = 3) {
+        ~objbox(cbhat15, "Ogre Dragon Archer hat. 5 Feather Red. Kills : 1700", 250, 0, divide(^objbox_height, 2));
+        $op = ~p_choice4_header("Ogre Expert Hat.", 1, "Expert Hat.", 2, "Ogre Dragon Archer Hat.", 3, "-- Hat Menu 5 --", 4, "@dbl@*** Hat Menu 4 ***");
+    }
+}
+@rantz_hatmenu5;
+
+[label,rantz_hatmenu5]
+def_int $op = ~p_choice5_header("Dragon Archer Hat.", 1, "Expert Ogre Dragon Archer Hat.", 2, "Expert Dragon Archer Hat.", 3, "-- Back to Hat Menu 1 --", 4, "-- Close Hat Menu --", 5, "@dbl@*** Hat Menu 5 ***");
+while($op < 4) {
+    if($op = 1) {
+        ~objbox(cbhat16, "Dragon Archer hat. 5 Feather black. Kills : 2250", 250, 0, divide(^objbox_height, 2));
+        $op = ~p_choice5_header("Dragon Archer Hat.", 1, "Expert Ogre Dragon Archer Hat.", 2, "Expert Dragon Archer Hat.", 3, "-- Back to Hat Menu 1 --", 4, "-- Close Hat Menu --", 5, "@dbl@*** Hat Menu 5 ***");
+    } else if($op = 2) {
+        ~objbox(cbhat17, "Expert Ogre Dragon Archer hat. 5 Feather rune. Kills : 3000", 250, 0, divide(^objbox_height, 2));
+        $op = ~p_choice5_header("Dragon Archer Hat.", 1, "Expert Ogre Dragon Archer Hat.", 2, "Expert Dragon Archer Hat.", 3, "-- Back to Hat Menu 1 --", 4, "-- Close Hat Menu --", 5, "@dbl@*** Hat Menu 5 ***");
+    } else if($op = 3) {
+        ~objbox(cbhat18, "Expert Dragon Archer hat. 5 Feather Gold. Kills : 4000", 250, 0, divide(^objbox_height, 2));
+        $op = ~p_choice5_header("Dragon Archer Hat.", 1, "Expert Ogre Dragon Archer Hat.", 2, "Expert Dragon Archer Hat.", 3, "-- Back to Hat Menu 1 --", 4, "-- Close Hat Menu --", 5, "@dbl@*** Hat Menu 5 ***");
+    }
+}
+if($op = 4) {
+    @rantz_hatmenu1;
+}
+@multi5("What are the hats like?", rantz_hatslike, "Can you show me the hats please?", rantz_showhats, "How many chompies do I have to stick?", rantz_stick, "Can I have a hat please?", rantz_givehats, "Ok, thanks.", rantz_ok);
+
+[label,rantz_givehats]
+~chatplayer("<p,neutral>Can I have a hat please?");
+~chatnpc("<p,neutral>You's creature show me da bow den!");
+if(inv_total(inv, ogre_bow) = 0 & inv_total(worn, ogre_bow) = 0) {
+    ~chatplayer("<p,neutral>Sorry Rantz, I don't have the bow.");
+    ~chatnpc("<p,neutral>Dat's da shame thing dat is! No flapper hat for you den!");
+    return;
+}
+// https://www.youtube.com/watch?v=LtoYNXgM5Wg
+// this is always an ogre bow (for ref when changing this in 2005)
+~objbox(ogre_bow, "You show Rantz the marks on your bow.", 250, 0, divide(^objbox_height, 2));
+if(%chompybird_kills = 0) {
+    ~chatnpc("<p,happy>Hey, yous creature needs to hunt da chompie if you's wants der's flappy hat!");
+    return;
+}
+if(%chompybird_kills < 30) {
+    ~chatnpc("<p,happy>Hey, yous creature needs to hunt more chompies if you's wants der's flappy hat!");
+    return;
+}
+def_int $avail_hats = 0;
+def_int $hat1 = ^false;
+def_int $hat2 = ^false;
+def_int $hat3 = ^false;
+def_int $hat4 = ^false;
+def_int $hat5 = ^false;
+def_int $hat6 = ^false;
+def_int $hat7 = ^false;
+def_int $hat8 = ^false;
+def_int $hat9 = ^false;
+def_int $hat10 = ^false;
+def_int $hat11 = ^false;
+def_int $hat12 = ^false;
+def_int $hat13 = ^false;
+def_int $hat14 = ^false;
+def_int $hat15 = ^false;
+def_int $hat16 = ^false;
+def_int $hat17 = ^false;
+def_int $hat18 = ^false;
+if(%chompybird_kills >= 30 & ~obj_gettotal(cbhat1) = 0) {
+    $hat1 = ^true;
+    $avail_hats = add($avail_hats, 1);
+}
+if(%chompybird_kills >= 40 & ~obj_gettotal(cbhat2) = 0) {
+    $hat2 = ^true;
+    $avail_hats = add($avail_hats, 1);
+}
+if(%chompybird_kills >= 50 & ~obj_gettotal(cbhat3) = 0) {
+    $hat3 = ^true;
+    $avail_hats = add($avail_hats, 1);
+}
+if(%chompybird_kills >= 70 & ~obj_gettotal(cbhat4) = 0) {
+    $hat4 = ^true;
+    $avail_hats = add($avail_hats, 1);
+}
+if(%chompybird_kills >= 95 & ~obj_gettotal(cbhat5) = 0) {
+    $hat5 = ^true;
+    $avail_hats = add($avail_hats, 1);
+}
+if(%chompybird_kills >= 125 & ~obj_gettotal(cbhat6) = 0) {
+    $hat6 = ^true;
+    $avail_hats = add($avail_hats, 1);
+}
+if(%chompybird_kills >= 170 & ~obj_gettotal(cbhat7) = 0) {
+    $hat7 = ^true;
+    $avail_hats = add($avail_hats, 1);
+}
+if(%chompybird_kills >= 225 & ~obj_gettotal(cbhat8) = 0) {
+    $hat8 = ^true;
+    $avail_hats = add($avail_hats, 1);
+}
+if(%chompybird_kills >= 300 & ~obj_gettotal(cbhat9) = 0) {
+    $hat9 = ^true;
+    $avail_hats = add($avail_hats, 1);
+}
+if(%chompybird_kills >= 400 & ~obj_gettotal(cbhat10) = 0) {
+    $hat10 = ^true;
+    $avail_hats = add($avail_hats, 1);
+}
+if(%chompybird_kills >= 550 & ~obj_gettotal(cbhat11) = 0) {
+    $hat11 = ^true;
+    $avail_hats = add($avail_hats, 1);
+}
+if(%chompybird_kills >= 700 & ~obj_gettotal(cbhat12) = 0) {
+    $hat12 = ^true;
+    $avail_hats = add($avail_hats, 1);
+}
+if(%chompybird_kills >= 1000 & ~obj_gettotal(cbhat13) = 0) {
+    $hat13 = ^true;
+    $avail_hats = add($avail_hats, 1);
+}
+if(%chompybird_kills >= 1300 & ~obj_gettotal(cbhat14) = 0) {
+    $hat14 = ^true;
+    $avail_hats = add($avail_hats, 1);
+}
+if(%chompybird_kills >= 1700 & ~obj_gettotal(cbhat15) = 0) {
+    $hat15 = ^true;
+    $avail_hats = add($avail_hats, 1);
+}
+if(%chompybird_kills >= 2250 & ~obj_gettotal(cbhat16) = 0) {
+    $hat16 = ^true;
+    $avail_hats = add($avail_hats, 1);
+}
+if(%chompybird_kills >= 3000 & ~obj_gettotal(cbhat17) = 0) {
+    $hat17 = ^true;
+    $avail_hats = add($avail_hats, 1);
+}
+if(%chompybird_kills >= 4000 & ~obj_gettotal(cbhat18) = 0) {
+    $hat18 = ^true;
+    $avail_hats = add($avail_hats, 1);
+}
+if($avail_hats = 0) {
+    ~chatnpc("<p,happy>Sorry, but der's no new hats for you this time! Go shoot some more chompies.");
+    return;
+}
+~chatnpc("<p,happy>Hey, you did good wiv da stabbie chucker, der's a flappy hat for ya.");
+if($hat1 = ^true) {
+    ~objbox(cbhat1, "@blu@~ Rantz shows you a new hat that you can take ~|@blu@~ as a reward for your chompy bird kill total. ~|@dbl@~ This is the hat for @dre@Ogre Bowman@dbl@ ~", 250, 0, divide(^objbox_height, 2));
+    if(inv_freespace(inv) = 0) {
+        // https://chisel.weirdgloop.org/dialogue/content/39211, and wiki says dialogue ends when no space, in osrs it kinda loops, idk how they managed that
+        ~chatnpc("<p,happy>You's person has too much junk for da flappy hat...|Rantz keeps it insteads!  @blu@~ Rantz chuckles to himself. ~");
+        return;
+    }
+    inv_add(inv, cbhat1, 1);
+    mes("You take the hat.");
+}
+
+if($hat2 = ^true) {
+    ~objbox(cbhat2, "@blu@~ Rantz shows you a new hat that you can take ~|@blu@~ as a reward for your chompy bird kill total. ~|@dbl@~ This is the hat for @dre@Bowman@dbl@ ~", 250, 0, divide(^objbox_height, 2));
+    if(inv_freespace(inv) = 0) {
+        ~chatnpc("<p,happy>You's person has too much junk for da flappy hat...|Rantz keeps it insteads!  @blu@~ Rantz chuckles to himself. ~");
+        return;
+    }
+    inv_add(inv, cbhat2, 1);
+    mes("You take the hat.");
+}
+
+if($hat3 = ^true) {
+    ~objbox(cbhat3, "@blu@~ Rantz shows you a new hat that you can take ~|@blu@~ as a reward for your chompy bird kill total. ~|@dbl@~ This is the hat for @dre@Ogre Yeoman@dbl@ ~", 250, 0, divide(^objbox_height, 2));
+    if(inv_freespace(inv) = 0) {
+        ~chatnpc("<p,happy>You's person has too much junk for da flappy hat...|Rantz keeps it insteads!  @blu@~ Rantz chuckles to himself. ~");
+        return;
+    }
+    inv_add(inv, cbhat3, 1);
+    mes("You take the hat.");
+}
+
+if($hat4 = ^true) {
+    ~objbox(cbhat4, "@blu@~ Rantz shows you a new hat that you can take ~|@blu@~ as a reward for your chompy bird kill total. ~|@dbl@~ This is the hat for @dre@Yeoman@dbl@ ~", 250, 0, divide(^objbox_height, 2));
+    if(inv_freespace(inv) = 0) {
+        ~chatnpc("<p,happy>You's person has too much junk for da flappy hat...|Rantz keeps it insteads!  @blu@~ Rantz chuckles to himself. ~");
+        return;
+    }
+    inv_add(inv, cbhat4, 1);
+    mes("You take the hat.");
+}
+
+if($hat5 = ^true) {
+    ~objbox(cbhat5, "@blu@~ Rantz shows you a new hat that you can take ~|@blu@~ as a reward for your chompy bird kill total. ~|@dbl@~ This is the hat for @dre@Ogre Marksman@dbl@ ~", 250, 0, divide(^objbox_height, 2));
+    if(inv_freespace(inv) = 0) {
+        ~chatnpc("<p,happy>You's person has too much junk for da flappy hat...|Rantz keeps it insteads!  @blu@~ Rantz chuckles to himself. ~");
+        return;
+    }
+    inv_add(inv, cbhat5, 1);
+    mes("You take the hat.");
+}
+
+if($hat6 = ^true) {
+    ~objbox(cbhat6, "@blu@~ Rantz shows you a new hat that you can take ~|@blu@~ as a reward for your chompy bird kill total. ~|@dbl@~ This is the hat for @dre@Marksman@dbl@ ~", 250, 0, divide(^objbox_height, 2));
+    if(inv_freespace(inv) = 0) {
+        ~chatnpc("<p,happy>You's person has too much junk for da flappy hat...|Rantz keeps it insteads!  @blu@~ Rantz chuckles to himself. ~");
+        return;
+    }
+    inv_add(inv, cbhat6, 1);
+    mes("You take the hat.");
+}
+
+if($hat7 = ^true) {
+    ~objbox(cbhat7, "@blu@~ Rantz shows you a new hat that you can take ~|@blu@~ as a reward for your chompy bird kill total. ~|@dbl@~ This is the hat for @dre@Ogre Woodsman@dbl@ ~", 250, 0, divide(^objbox_height, 2));
+    if(inv_freespace(inv) = 0) {
+        ~chatnpc("<p,happy>You's person has too much junk for da flappy hat...|Rantz keeps it insteads!  @blu@~ Rantz chuckles to himself. ~");
+        return;
+    }
+    inv_add(inv, cbhat7, 1);
+    mes("You take the hat.");
+}
+
+if($hat8 = ^true) {
+    ~objbox(cbhat8, "@blu@~ Rantz shows you a new hat that you can take ~|@blu@~ as a reward for your chompy bird kill total. ~|@dbl@~ This is the hat for @dre@Woodsman@dbl@ ~", 250, 0, divide(^objbox_height, 2));
+    if(inv_freespace(inv) = 0) {
+        ~chatnpc("<p,happy>You's person has too much junk for da flappy hat...|Rantz keeps it insteads!  @blu@~ Rantz chuckles to himself. ~");
+        return;
+    }
+    inv_add(inv, cbhat8, 1);
+    mes("You take the hat.");
+}
+
+if($hat9 = ^true) {
+    ~objbox(cbhat9, "@blu@~ Rantz shows you a new hat that you can take ~|@blu@~ as a reward for your chompy bird kill total. ~|@dbl@~ This is the hat for @dre@Ogre Forester@dbl@ ~", 250, 0, divide(^objbox_height, 2));
+    if(inv_freespace(inv) = 0) {
+        ~chatnpc("<p,happy>You's person has too much junk for da flappy hat...|Rantz keeps it insteads!  @blu@~ Rantz chuckles to himself. ~");
+        return;
+    }
+    inv_add(inv, cbhat9, 1);
+    mes("You take the hat.");
+}
+
+if($hat10 = ^true) {
+    ~objbox(cbhat10, "@blu@~ Rantz shows you a new hat that you can take ~|@blu@~ as a reward for your chompy bird kill total. ~|@dbl@~ This is the hat for @dre@Forester@dbl@ ~", 250, 0, divide(^objbox_height, 2));
+    if(inv_freespace(inv) = 0) {
+        ~chatnpc("<p,happy>You's person has too much junk for da flappy hat...|Rantz keeps it insteads!  @blu@~ Rantz chuckles to himself. ~");
+        return;
+    }
+    inv_add(inv, cbhat10, 1);
+    mes("You take the hat.");
+}
+
+if($hat11 = ^true) {
+    ~objbox(cbhat11, "@blu@~ Rantz shows you a new hat that you can take ~|@blu@~ as a reward for your chompy bird kill total. ~|@dbl@~ This is the hat for @dre@Ogre Forester@dbl@ ~", 250, 0, divide(^objbox_height, 2));
+    if(inv_freespace(inv) = 0) {
+        ~chatnpc("<p,happy>You's person has too much junk for da flappy hat...|Rantz keeps it insteads!  @blu@~ Rantz chuckles to himself. ~");
+        return;
+    }
+    inv_add(inv, cbhat11, 1);
+    mes("You take the hat.");
+}
+
+if($hat12 = ^true) {
+    ~objbox(cbhat12, "@blu@~ Rantz shows you a new hat that you can take ~|@blu@~ as a reward for your chompy bird kill total. ~|@dbl@~ This is the hat for @dre@Forester@dbl@ ~", 250, 0, divide(^objbox_height, 2));
+    if(inv_freespace(inv) = 0) {
+        ~chatnpc("<p,happy>You's person has too much junk for da flappy hat...|Rantz keeps it insteads!  @blu@~ Rantz chuckles to himself. ~");
+        return;
+    }
+    inv_add(inv, cbhat12, 1);
+    mes("You take the hat.");
+}
+
+if($hat13 = ^true) {
+    ~objbox(cbhat13, "@blu@~ Rantz shows you a new hat that you can take ~|@blu@~ as a reward for your chompy bird kill total. ~|@dbl@~ This is the hat for @dre@Ogre Expert@dbl@ ~", 250, 0, divide(^objbox_height, 2));
+    if(inv_freespace(inv) = 0) {
+        ~chatnpc("<p,happy>You's person has too much junk for da flappy hat...|Rantz keeps it insteads!  @blu@~ Rantz chuckles to himself. ~");
+        return;
+    }
+    inv_add(inv, cbhat13, 1);
+    mes("You take the hat.");
+}
+
+if($hat14 = ^true) {
+    ~objbox(cbhat14, "@blu@~ Rantz shows you a new hat that you can take ~|@blu@~ as a reward for your chompy bird kill total. ~|@dbl@~ This is the hat for @dre@Expert@dbl@ ~", 250, 0, divide(^objbox_height, 2));
+    if(inv_freespace(inv) = 0) {
+        ~chatnpc("<p,happy>You's person has too much junk for da flappy hat...|Rantz keeps it insteads!  @blu@~ Rantz chuckles to himself. ~");
+        return;
+    }
+    inv_add(inv, cbhat14, 1);
+    mes("You take the hat.");
+}
+
+if($hat15 = ^true) {
+    ~objbox(cbhat15, "@blu@~ Rantz shows you a new hat that you can take ~|@blu@~ as a reward for your chompy bird kill total. ~|@dbl@~ This is the hat for @dre@Ogre Dragon Archer@dbl@ ~", 250, 0, divide(^objbox_height, 2));
+    if(inv_freespace(inv) = 0) {
+        ~chatnpc("<p,happy>You's person has too much junk for da flappy hat...|Rantz keeps it insteads!  @blu@~ Rantz chuckles to himself. ~");
+        return;
+    }
+    inv_add(inv, cbhat15, 1);
+    mes("You take the hat.");
+}
+
+if($hat16 = ^true) {
+    ~objbox(cbhat16, "@blu@~ Rantz shows you a new hat that you can take ~|@blu@~ as a reward for your chompy bird kill total. ~|@dbl@~ This is the hat for @dre@Dragon Archer@dbl@ ~", 250, 0, divide(^objbox_height, 2));
+    if(inv_freespace(inv) = 0) {
+        ~chatnpc("<p,happy>You's person has too much junk for da flappy hat...|Rantz keeps it insteads!  @blu@~ Rantz chuckles to himself. ~");
+        return;
+    }
+    inv_add(inv, cbhat16, 1);
+    mes("You take the hat.");
+}
+
+if($hat17 = ^true) {
+    ~objbox(cbhat17, "@blu@~ Rantz shows you a new hat that you can take ~|@blu@~ as a reward for your chompy bird kill total. ~|@dbl@~ This is the hat for @dre@Expert Ogre Dragon Archer@dbl@ ~", 250, 0, divide(^objbox_height, 2));
+    if(inv_freespace(inv) = 0) {
+        ~chatnpc("<p,happy>You's person has too much junk for da flappy hat...|Rantz keeps it insteads!  @blu@~ Rantz chuckles to himself. ~");
+        return;
+    }
+    inv_add(inv, cbhat17, 1);
+    mes("You take the hat.");
+}
+
+if($hat18 = ^true) {
+    ~objbox(cbhat18, "@blu@~ Rantz shows you a new hat that you can take ~|@blu@~ as a reward for your chompy bird kill total. ~|@dbl@~ This is the hat for @dre@Expert Dragon Archer@dbl@ ~", 250, 0, divide(^objbox_height, 2));
+    if(inv_freespace(inv) = 0) {
+        ~chatnpc("<p,happy>You's person has too much junk for da flappy hat...|Rantz keeps it insteads!  @blu@~ Rantz chuckles to himself. ~");
+        return;
+    }
+    inv_add(inv, cbhat18, 1);
+    mes("You take the hat.");
+}
+
+[label,rantz_ok]
+~chatplayer("<p,neutral>Ok, thanks.");
 
 // look for any chompy birds to shoot
-[ai_timer,chompybird_rantz]
+[ai_timer,rantz]
 if(random(20) ! 0 | npc_getmode = none) return;
 if (.npc_find(0_41_46_11_22, chompy_bird, 12, ^vis_lineofsight) = true) {
     if(%rantz_attacking_chompy = .npc_uid) return;
     if (p_finduid(.%quest_chompybird_baiter) = true & inzone(0_41_46_0_0, 0_41_46_63_63, coord) = true) {
         // we only run this logic for players in the right quest state
-        if (%chompybird_progress >= ^chompybird_chompy_ate_toad & %chompybird_progress < ^chompybird_rantz_gave_player_bow) {
+        if (%chompybird >= ^chompybird_chompy_ate_toad & %chompybird < ^chompybird_rantz_gave_player_bow) {
             %rantz_attacking_chompy = .npc_uid;
             %quest_chompybird_baiter = uid;
             mes("Rantz: Hey, dere's da chompy, I's gonna shoot it.");
@@ -358,7 +772,7 @@ if (.npc_find(0_41_46_11_22, chompy_bird, 12, ^vis_lineofsight) = true) {
     }
 }
 
-[ai_queue11,chompybird_rantz]
+[ai_queue11,rantz]
 if(.npc_finduid(%rantz_attacking_chompy) = true) {
     npc_anim(ogre_longbow, 0);
     spotanim_npc(ogre_arrow_launch, 50, 0);
@@ -367,11 +781,11 @@ if(.npc_finduid(%rantz_attacking_chompy) = true) {
     npc_queue(12, 0, calc($delay + 1));
 }
 
-[ai_queue12,chompybird_rantz]
+[ai_queue12,rantz]
 npc_setmode(null);
 if(.npc_finduid(%rantz_attacking_chompy) = true) {
     if (p_finduid(%quest_chompybird_baiter) = true) {
-        %chompybird_progress = ^chompybird_rantz_tried_to_shoot_chompy;
+        %chompybird = ^chompybird_rantz_tried_to_shoot_chompy;
         mes("Rantz keeps missing the chompy bird...");
         mes("Rantz: Grrr...de'ese arrows are rubbish.");
         npc_say("Grrr...de'ese arrows are rubbish.");

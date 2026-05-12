@@ -37,7 +37,7 @@ head2=model_135_npc_head
 wanderrange=0
 moverestrict=nomove
 
-[female_slave]
+[mining_slave_female]
 vislevel=hide
 name=Female slave
 desc=She looks like she's been down here a long time.
@@ -56,10 +56,13 @@ model5=model_428_idk
 model6=model_361_obj_wear
 model7=model_509_obj_wear
 head1=model_115_idk_head
-wanderrange=1
+wanderrange=3
 param=death_sound,female_death
+//There are 2 male slave npc on the osrs side that have
+//a different id than the others, they have wander 3
+//these 2 are the original id versions from before the rework.
 
-[male_slave]
+[mining_slave_male]
 vislevel=hide
 name=Male slave
 desc=It looks like he's been here a long time.
@@ -80,9 +83,12 @@ model7=model_185_obj_wear
 model8=model_509_obj_wear
 head1=model_55_idk_head
 head2=model_82_idk_head
-wanderrange=1
+wanderrange=3
+//There are 2 male slave npc on the osrs side that have
+//a different id than the others, they have wander 3
+//these 2 are the original id versions from before the rework.
 
-[escaping_slave]
+[escaped_slave]
 vislevel=hide
 name=Escaping slave.
 desc=He's making a break for it!
@@ -110,14 +116,14 @@ model7=model_185_obj_wear
 head1=model_55_idk_head
 head2=model_82_idk_head
 
-[rowdy_slave]
+[slave_rowdy]
 name=Rowdy slave
 desc=He looks a bit aggressive.
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 op1=Talk-to
 op2=Attack
-vislevel=15
+vislevel=10
 recol1s=2340
 recol1d=14724
 recol2s=6144
@@ -153,14 +159,14 @@ huntrange=1
 // Unknown reason osrs side this npc use unarmed attacks --attack seq_422 defend seq_424--
 // Stats match osrs version but our version Vislvl is different.
 
-[mercenary_1]
+[desertminingmercenary1]
 name=Mercenary
 desc=He looks a bit aggressive.
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 op1=Talk-to
 op2=Attack
-vislevel=40
+vislevel=45
 recol1s=2340
 recol1d=25313
 recol2s=14724
@@ -201,17 +207,20 @@ param=damagetype,^slash_style
 param=attack_anim,human_sword_slash
 param=defend_anim,human_sword_def
 param=attack_sound,hacksword_slash
+// param=defend_sound, TODO
+// osrs defend_sound blade2_mail
 // Stats match osrs version but our version Vislvl is different.
 // desertminingcamp guards,mercenarys,mercenary captain,rowdy guards share same seqs + param stats.
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_4665
 
-[mercenary_2]
+[desertminingmercenary2]
 name=Mercenary
 desc=He looks a bit aggressive.
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 op1=Talk-to
 op2=Attack
-vislevel=40
+vislevel=45
 recol1s=2340
 recol1d=25313
 recol2s=14724
@@ -252,10 +261,13 @@ param=damagetype,^slash_style
 param=attack_anim,human_sword_slash
 param=defend_anim,human_sword_def
 param=attack_sound,hacksword_slash
+// param=defend_sound, TODO
+// osrs defend_sound blade2_mail
 // Stats match osrs version but our version Vislvl is different.
 // desertminingcamp guards,mercenarys,mercenary captain,rowdy guards share same seqs + param stats.
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_4669
 
-[mercenary_captain]
+[desertminingcaptain]
 name=Mercenary Captain
 desc=He looks a bit aggressive.
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
@@ -263,7 +275,7 @@ readyanim=human_ready
 op1=Talk-to
 op2=Attack
 op3=Watch
-vislevel=53
+vislevel=47
 recol1s=2340
 recol1d=25313
 recol2s=14724
@@ -308,11 +320,13 @@ param=damagetype,^slash_style
 param=attack_anim,human_sword_slash
 param=defend_anim,human_sword_def
 param=attack_sound,hacksword_slash
+// param=defend_sound, TODO
+// osrs defend_sound blade2_mail
 // Stats match osrs version but our version Vislvl is different.
 // desertminingcamp guards,mercenarys,mercenary captain,rowdy guards share same seqs + param stats.
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_4635
 
-[captain_siad]
+[capt_siad]
 name=Captain Siad
 desc=He's in control of the whole mining camp.
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
@@ -343,7 +357,7 @@ head2=model_43_obj_wear
 head3=model_80_idk_head
 wanderrange=3
 
-[mine_cart_driver]
+[mining_cart_driver]
 vislevel=hide
 name=Mine cart driver
 desc=He looks busy attending to his cart.
@@ -370,14 +384,14 @@ model7=model_185_obj_wear
 head1=model_55_idk_head
 wanderrange=3
 
-[rowdy_guard]
+[rowdymineguard]
 name=Rowdy Guard
 desc=He looks a bit aggressive and rowdy.
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 op1=Talk-to
 op2=Attack
-vislevel=40
+vislevel=43
 recol1s=2340
 recol1d=25313
 recol2s=14724
@@ -414,6 +428,8 @@ param=damagetype,^slash_style
 param=attack_anim,human_sword_slash
 param=defend_anim,human_sword_def
 param=attack_sound,hacksword_slash
+// param=defend_sound, TODO
+// osrs defend_sound blade2_mail
 huntmode=cowardly
 // https://oldschool.runescape.wiki/w/Guard_(Desert_Mining_Camp)#Brown_hair
 // desertminingcamp guards,mercenarys,mercenary captain,rowdy guards share same seqs + param stats.

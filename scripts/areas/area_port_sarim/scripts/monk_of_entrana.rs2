@@ -1,4 +1,4 @@
-[opnpc1,monk_of_entrana_sarim]
+[opnpc1,shipmonk]
 if(map_members = ^false) { // RS3
     mes("You need to be on a members' world to access this content.");
     return;
@@ -44,7 +44,8 @@ if ((inv_totalcat(inv, armour_hands) > 0 | inv_totalcat(worn, armour_hands) > 0)
     | (inv_totalcat(inv, weapon_spiked) > 0 | inv_totalcat(worn, weapon_spiked) > 0) 
     | (inv_totalcat(inv, weapon_thrown) > 0 | inv_totalcat(worn, weapon_thrown) > 0) 
     | (inv_totalcat(inv, weapon_scythe) > 0 | inv_totalcat(worn, weapon_scythe) > 0) 
-    | (inv_totalcat(inv, weapon_bow) > 0 | inv_totalcat(worn, weapon_bow) > 0) 
+    | (inv_totalcat(inv, weapon_bow) > 0 | inv_totalcat(worn, weapon_bow) > 0)
+    | (inv_totalcat(inv, weapon_claws) > 0 | inv_totalcat(worn, weapon_claws) > 0)
     | (inv_totalcat(inv, cannon_parts) > 0)) {
     return(true);
 }

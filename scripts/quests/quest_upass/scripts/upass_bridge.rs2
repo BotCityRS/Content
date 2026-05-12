@@ -65,7 +65,7 @@ mes("You fire your arrow at the rope supporting the bridge...");
 anim(human_bow, 0);
 ~coord_projectile(coord, loc_coord, oc_param($worn_ammo, proj_travel), 40, 36, 41, 15, 5, 11, 5);
 p_delay(0);
-if(stat_random(ranged, 90, 300) = false) {
+if(stat_random(ranged, 160, 300) = false) {
     mes("The arrow just misses the rope.");
     return;
 }
@@ -84,7 +84,7 @@ if(loc_find(0_38_151_11_52, old_bridge_up) = true) {
 }
 p_delay(3);
 p_teleport(0_38_151_10_52);
-if(%upass_progress = ^upass_spoken_koftik) %upass_progress = ^upass_passed_bridge;
+if(%upass = ^upass_spoken_koftik) %upass = ^upass_passed_bridge;
 
 [oploc1,upass_lever_up]
 mes("You pull the old lever...");

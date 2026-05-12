@@ -17,7 +17,7 @@ womanwear=model_444_obj_wear,0
 weight=10g
 tradeable=no
 
-[ghost_skull]
+[ghostskull]
 name=Skull
 desc=Ooooh spooky!
 model=model_2388_obj
@@ -30,3 +30,4 @@ model=model_2388_obj
 weight=80g
 param=no_alchemy,1
 tradeable=no
+param=destroy_drop,^true

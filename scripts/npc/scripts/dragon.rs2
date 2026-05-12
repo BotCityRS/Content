@@ -95,7 +95,7 @@ npc_anim(dragon_firebreath_middle_attack, 0);
 sound_synth(dragonbreath, 0, 30);
 %npc_action_delay = add(map_clock, 4);
 
-def_int $attack_roll = ~npc_magic_attack_roll_no_prot;
+def_int $attack_roll = ~npc_magic_attack_roll;
 def_int $defence_roll = ~player_defence_roll_specific(npc_param(damagetype));
 
 // damage player
@@ -103,7 +103,7 @@ def_int $maxhit = 30;
 if (inv_total(worn, antidragonbreathshield) > 0) {
     $maxhit = 5;
     mes("Your shield absorbs most of the dragon fire!"); // late 2004
-} else if (%prayer_protectfrommagic = ^true) {
+} else if (%prayer12 = ^true) {
     $maxhit = 10;
 } else if (randominc($attack_roll) > randominc($defence_roll)) {
     $maxhit = add($maxhit, 20);
@@ -113,13 +113,13 @@ if (inv_total(worn, antidragonbreathshield) > 0) {
     mes("You manage to resist some of the dragon fire!");
 }
 
-if (map_clock < %antifire) {
+if (map_clock < %dragonresist) {
     //mes("<tostring(map_clock)>, <tostring(%antifire)>");
     $maxhit = sub($maxhit, 15);
 }
 
 def_int $damage = randominc(max($maxhit, 0));
 queue(combat_damage_player, 0, $damage);
-queue(playerhit_n_retaliate, 0, npc_uid); // this should be a queue* command
+queue*(playerhit_n_retaliate, 0)(npc_uid);
 %npc_action_delay = add(map_clock, 4);
 ~npc_set_attack_vars;

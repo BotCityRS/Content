@@ -5,8 +5,8 @@ walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 op1=Talk-to
 op2=Attack
-vislevel=42
-recol1s=6273
+vislevel=37
+recol1s=7330
 recol1d=23009
 model1=model_220_obj_wear
 model2=model_185_obj_wear
@@ -39,10 +39,14 @@ param=magicdefence,10
 param=rangedefence,19
 param=damagetype,^crush_style
 param=attack_anim,human_bow
+param=defend_sound,null
+param=death_sound,null
 param=rangeattack_sound,arrowlaunch2
 param=proj_launch,iron_arrow_launch
 param=proj_travel,iron_arrow_travel
 // Stats match osrs version but our version Vislvl is different.
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_6056
+// this npc havent any hit or death sounds...
 
 [ranging_guild_doorman]
 vislevel=hide
@@ -51,7 +55,7 @@ desc=The keeper of the gates to the ranging guild.
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 op1=Talk-to
-recol1s=6273
+recol1s=7330
 recol1d=23009
 model1=model_220_obj_wear
 model2=model_185_obj_wear
@@ -71,7 +75,7 @@ strength=20
 defence=40
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_6057
 
-[leatherworker]
+[ranging_guild_leatherworker]
 vislevel=hide
 name=Leatherworker
 desc=An expert leatherworker.
@@ -100,7 +104,7 @@ head1=model_120_idk_head
 head2=model_90_obj_wear
 wanderrange=2
 
-[weapon_poison_salesman]
+[ranging_guild_poison_salesman]
 vislevel=hide
 name=Weapon poison salesman
 desc=Supplier of deadly liquids.
@@ -121,7 +125,7 @@ model7=model_262_obj_wear
 head1=model_58_npc_head
 head2=model_79_idk_head
 
-[armour_salesman]
+[ranging_guild_armour_salesman]
 vislevel=hide
 name=Armour salesman
 desc=Supplier of Rangers armour.
@@ -129,7 +133,7 @@ walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 op1=Talk-to
 op3=Trade
-recol1s=6273
+recol1s=7330
 recol1d=23009
 recol2s=289
 recol2d=10240
@@ -155,7 +159,7 @@ param=shop_buy_multiplier,500
 param=shop_delta,10
 param=shop_title,Aaron's Archery Appendages.
 
-[bow_and_arrow_salesman]
+[ranging_guild_bow_salesman]
 vislevel=hide
 name=Bow and Arrow salesman
 desc=Supplier of Archery equipment.
@@ -183,7 +187,7 @@ param=shop_buy_multiplier,500
 param=shop_delta,10
 param=shop_title,Dargaud's Bow and Arrows.
 
-[tower_advisor_north]
+[ranging_advisor1]
 vislevel=hide
 name=Tower Advisor
 desc=Tower keeper and competition judge.
@@ -205,7 +209,7 @@ wanderrange=0
 moverestrict=nomove
 category=tower_advisor
 
-[tower_advisor_east]
+[ranging_advisor2]
 vislevel=hide
 name=Tower Advisor
 desc=Tower keeper and competition judge.
@@ -227,7 +231,7 @@ wanderrange=0
 moverestrict=nomove
 category=tower_advisor
 
-[tower_advisor_south]
+[ranging_advisor3]
 vislevel=hide
 name=Tower Advisor
 desc=Tower keeper and competition judge.
@@ -249,7 +253,7 @@ wanderrange=0
 moverestrict=nomove
 category=tower_advisor
 
-[tower_advisor_west]
+[ranging_advisor4]
 vislevel=hide
 name=Tower Advisor
 desc=Tower keeper and competition judge.
@@ -271,14 +275,14 @@ wanderrange=0
 moverestrict=nomove
 category=tower_advisor
 
-[tower_archer_north]
+[guild_towerarcher1]
 name=Tower Archer
 desc=Defender of the north tower.
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 op2=Attack
-vislevel=22
-recol1s=6273
+vislevel=19
+recol1s=7330
 recol1d=23009
 recol2s=11630
 recol2d=7363
@@ -306,6 +310,8 @@ param=magicdefence,6
 param=rangedefence,12
 param=damagetype,^crush_style
 param=attack_anim,human_bow
+param=defend_sound,null
+param=death_sound,null
 param=rangeattack_sound,arrowlaunch2
 param=proj_launch,iron_arrow_launch
 param=proj_travel,iron_arrow_travel
@@ -314,15 +320,17 @@ huntmode=aggressive_ranged
 // https://oldschool.runescape.wiki/w/Tower_Archer
 huntrange=11
 // Stats match osrs version but our version Vislvl is different.
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_6065
+// this npc havent any hit or death sounds...
 
-[tower_archer_east]
+[guild_towerarcher2]
 name=Tower Archer
 desc=Defender of the east tower.
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 op2=Attack
-vislevel=42
-recol1s=6273
+vislevel=34
+recol1s=7330
 recol1d=20004
 recol2s=14801
 recol2d=7364
@@ -348,6 +356,8 @@ param=magicdefence,24
 param=rangedefence,40
 param=damagetype,^crush_style
 param=attack_anim,human_bow
+param=defend_sound,null
+param=death_sound,null
 param=rangeattack_sound,arrowlaunch2
 param=proj_launch,steel_arrow_launch
 param=proj_travel,steel_arrow_travel
@@ -356,15 +366,17 @@ huntmode=aggressive_ranged
 // https://oldschool.runescape.wiki/w/Tower_Archer
 huntrange=11
 // Stats match osrs version but our version Vislvl is different.
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_6065
+// this npc havent any hit or death sounds...
 
-[tower_archer_south]
+[guild_towerarcher3]
 name=Tower Archer
 desc=Defender of the south tower.
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 op2=Attack
-vislevel=61
-recol1s=6273
+vislevel=49
+recol1s=7330
 recol1d=21040
 recol2s=14801
 recol2d=256
@@ -390,6 +402,8 @@ param=magicdefence,20
 param=rangedefence,45
 param=damagetype,^crush_style
 param=attack_anim,human_bow
+param=defend_sound,null
+param=death_sound,null
 param=rangeattack_sound,arrowlaunch2
 param=proj_launch,mithril_arrow_launch
 param=proj_travel,mithril_arrow_travel
@@ -398,15 +412,17 @@ huntmode=aggressive_ranged
 // https://oldschool.runescape.wiki/w/Tower_Archer
 huntrange=11
 // Stats match osrs version but our version Vislvl is different.
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_6067
+// this npc havent any hit or death sounds...
 
-[tower_archer_west]
+[guild_towerarcher4]
 name=Tower Archer
 desc=Defender of the west tower.
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 op2=Attack
-vislevel=81
-recol1s=6273
+vislevel=64
+recol1s=7330
 recol1d=23073
 recol2s=14801
 recol2d=256
@@ -432,6 +448,8 @@ param=magicdefence,34
 param=rangedefence,66
 param=damagetype,^crush_style
 param=attack_anim,human_bow
+param=defend_sound,null
+param=death_sound,null
 param=rangeattack_sound,arrowlaunch2
 param=proj_launch,adamant_arrow_launch
 param=proj_travel,adamant_arrow_travel
@@ -440,8 +458,10 @@ huntmode=aggressive_ranged
 // https://oldschool.runescape.wiki/w/Tower_Archer
 huntrange=11
 // Stats match osrs version but our version Vislvl is different.
+// https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_6068
+// this npc havent any hit or death sounds...
 
-[tribal_weapon_salesman]
+[ranging_guild_tribal_salesman]
 vislevel=hide
 name=Tribal Weapon Salesman
 desc=Supplier of authentic throwing weapons.
@@ -469,16 +489,17 @@ param=owned_shop,ranging_guild_tribalshop
 param=shop_sell_multiplier,1300
 param=shop_buy_multiplier,500
 param=shop_delta,10
-param=shop_title,Authentic Throwing Weapons.
+param=shop_title,Authentic throwing weapons.
+// https://web.archive.org/web/20060521172929/http://runehq.com/images/otherguides/Throwing_weapons.jpg (Authentic throwing weapons.)
 
-[competition_judge]
+[ranging_guild_competition_judge]
 vislevel=hide
 name=Competition Judge
 desc=Overseer of the Archery competition.
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 op1=Talk-to
-recol1s=6273
+recol1s=7330
 recol1d=23009
 model1=model_220_obj_wear
 model2=model_185_obj_wear
@@ -493,14 +514,14 @@ head2=model_85_idk_head
 head3=model_32_obj_wear
 wanderrange=1
 
-[ticket_merchant]
+[ranging_guild_ticket_exchange]
 vislevel=hide
 name=Ticket Merchant
 desc=Exchanges your tickets for equipment.
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 op1=Talk-to
-recol1s=6273
+recol1s=7330
 recol1d=23009
 recol2s=289
 recol2d=10240

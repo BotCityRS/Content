@@ -150,7 +150,7 @@ size=2
 walkanim=terrorbird_mounted_walk
 readyanim=terrorbird_mounted_ready
 op2=Attack
-vislevel=29
+vislevel=31
 model1=model_3012_npc
 wanderrange=12
 maxrange=14
@@ -181,7 +181,7 @@ size=2
 walkanim=terrorbird_mounted_walk
 readyanim=terrorbird_mounted_ready
 op2=Attack
-vislevel=46
+vislevel=49
 model1=model_3013_npc
 wanderrange=12
 maxrange=14
@@ -243,7 +243,7 @@ wanderrange=3
 param=death_anim,midget_death
 param=death_sound,gnome_death
 
-[gnome_barman]
+[blurberrybarmen]
 vislevel=hide
 name=Barman
 desc=He serves cocktails.
@@ -420,7 +420,7 @@ desc=A tree gnome guard.
 walkanim=midget_walk
 readyanim=midget_ready
 op2=Attack
-vislevel=19
+vislevel=23
 recol1s=352
 recol1d=20516
 model1=model_2909_npc
@@ -451,7 +451,7 @@ desc=A tree gnome guard.
 walkanim=midget_walk
 readyanim=midget_ready
 op2=Attack
-vislevel=19
+vislevel=23
 recol1s=352
 recol1d=20516
 model1=model_2909_npc
@@ -474,7 +474,7 @@ param=attack_anim,midget_attacksword
 param=defend_anim,midget_blockshield
 param=death_anim,midget_death
 param=attack_sound,hacksword_slash
-// param=attack_sound,brassclash
+param=defend_sound,brassclash
 param=death_sound,gnome_death
 // Stats match osrs version but our version Vislvl is different.
 // https://raw.githubusercontent.com/Joshua-F/osrs-dumps/refs/heads/master/config/dump.npc npc_6082
@@ -635,6 +635,7 @@ walkanim=midget_walk
 readyanim=midget_ready
 vislevel=hide
 op1=Talk-to
+op3=Teleport
 recol1s=416
 recol1d=17969
 recol2s=15360
@@ -650,7 +651,7 @@ head1=model_18_npc_head
 param=death_anim,midget_death
 param=death_sound,gnome_death
 
-[hudo]
+[gnome_hudo]
 name=Hudo
 desc=It's another jolly tree gnome.
 readyanim=midget_ready
@@ -680,7 +681,7 @@ param=shop_delta,10
 param=death_anim,midget_death
 param=death_sound,gnome_death
 
-[rometti]
+[gnome_rometti]
 name=Rometti
 desc=It's a well dressed tree gnome.
 readyanim=midget_ready
@@ -711,7 +712,7 @@ param=shop_delta,10
 param=death_anim,midget_death
 param=death_sound,gnome_death
 
-[gulluck]
+[gnome_gulluck]
 name=Gulluck
 desc=He sells weapons.
 readyanim=midget_ready
@@ -736,7 +737,7 @@ param=shop_buy_multiplier,250
 param=shop_sell_multiplier,1000
 param=shop_delta,10
 
-[heckel_funch]
+[gnome_heckelfunch]
 name=Heckel Funch
 desc=It's another jolly tree gnome.
 readyanim=midget_ready

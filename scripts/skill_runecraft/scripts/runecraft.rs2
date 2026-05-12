@@ -38,7 +38,8 @@ if (db_getfield($data, runecraft_table:members, 0) = ^true) {
 }
 anim(human_pickupfloor, 0);
 sound_synth(teleport_all, 0, 0);
-mes("You hold the <oc_name(last_useitem)> towards the mysterious ruins.");
+// https://www.youtube.com/watch?v=KIuXgWDMYbk
+mes("You hold the <db_getfield($data, runecraft_table:name, 0)> Talisman towards the mysterious ruins.");
 mes("You feel a powerful force take hold of you...");
 p_delay(1);
 p_telejump(map_findsquare(db_getfield($data, runecraft_table:enter_coord, random(db_getfieldcount($data, runecraft_table:enter_coord)))));
@@ -74,6 +75,7 @@ if ($total_ess = 0) {
 
 anim(human_runecraft, 0);
 spotanim_pl(runecrafting, 96, 0);
+sound_synth(bind_runes, 0, 0);
 
 def_int $rune_count_per_ess = 1;
 if (db_getfieldcount($data, runecraft_table:multiplier) > 0) {

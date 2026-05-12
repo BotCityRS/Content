@@ -1,4 +1,4 @@
-[doogle_leaves]
+[doogleleaves]
 name=Doogle leaves
 desc=A tasty herb good for seasoning.
 cost=2
@@ -63,6 +63,7 @@ category=category_81
 members=yes
 op1=Use
 tradeable=no
+param=destroy_drop,^true
 
 [kittenobject]
 name=Pet kitten
@@ -77,9 +78,9 @@ model=model_3009_obj
 members=yes
 weight=750g
 category=kitten
-param=follower_id,follower_kitten_greyblack
+param=follower_id,kittenpet1
 tradeable=no
-//https://chisel.weirdgloop.org/structs_rs3/index.html?type=items&id=1555
+param=destroy_drop,^true
 
 [kittenobject_light]
 name=Pet kitten
@@ -102,8 +103,9 @@ recol4d=0
 members=yes
 weight=750g
 category=kitten
-param=follower_id,follower_kitten_white
+param=follower_id,kittenpet_light
 tradeable=no
+param=destroy_drop,^true
 
 [kittenobject_brown]
 name=Pet kitten
@@ -124,8 +126,9 @@ recol3d=15685
 members=yes
 weight=750g
 category=kitten
-param=follower_id,follower_kitten_brown
+param=follower_id,kittenpet_brown
 tradeable=no
+param=destroy_drop,^true
 
 [kittenobject_black]
 name=Pet kitten
@@ -146,8 +149,9 @@ recol3d=8456
 members=yes
 weight=750g
 category=kitten
-param=follower_id,follower_kitten_black
+param=follower_id,kittenpet_black
 tradeable=no
+param=destroy_drop,^true
 
 [kittenobject_browngrey]
 name=Pet kitten
@@ -168,8 +172,9 @@ recol3d=11627
 members=yes
 weight=750g
 category=kitten
-param=follower_id,follower_kitten_greybrown
+param=follower_id,kittenpet_browngrey
 tradeable=no
+param=destroy_drop,^true
 
 [kittenobject_bluegrey]
 name=Pet kitten
@@ -190,8 +195,9 @@ recol3d=11627
 members=yes
 weight=750g
 category=kitten
-param=follower_id,follower_kitten_greyblue
+param=follower_id,kittenpet_bluegrey
 tradeable=no
+param=destroy_drop,^true
 
 [growncatobject]
 name=Pet cat
@@ -206,8 +212,9 @@ model=model_3006_obj
 members=yes
 weight=1500g
 category=cat
-param=follower_id,follower_cat_greyblack
+param=follower_id,growncat
 tradeable=no
+param=destroy_drop,^true
 
 [growncatobject_light]
 name=Pet cat
@@ -230,8 +237,9 @@ recol4d=0
 members=yes
 weight=1500g
 category=cat
-param=follower_id,follower_cat_white
+param=follower_id,growncat_light
 tradeable=no
+param=destroy_drop,^true
 
 [growncatobject_brown]
 name=Pet cat
@@ -252,8 +260,9 @@ recol3d=15685
 members=yes
 weight=1500g
 category=cat
-param=follower_id,follower_cat_brown
+param=follower_id,growncat_brown
 tradeable=no
+param=destroy_drop,^true
 
 [growncatobject_black]
 name=Pet cat
@@ -274,8 +283,9 @@ recol3d=8456
 members=yes
 weight=1500g
 category=cat
-param=follower_id,follower_cat_black
+param=follower_id,growncat_black
 tradeable=no
+param=destroy_drop,^true
 
 [growncatobject_browngrey]
 name=Pet cat
@@ -296,8 +306,9 @@ recol3d=11627
 members=yes
 weight=1500g
 category=cat
-param=follower_id,follower_cat_greybrown
+param=follower_id,growncat_browngrey
 tradeable=no
+param=destroy_drop,^true
 
 [growncatobject_bluegrey]
 name=Pet cat
@@ -318,8 +329,9 @@ recol3d=11627
 members=yes
 weight=1500g
 category=cat
-param=follower_id,follower_cat_greyblue
+param=follower_id,growncat_bluegrey
 tradeable=no
+param=destroy_drop,^true
 
 [overgrowncatobject]
 name=Pet cat
@@ -334,8 +346,9 @@ model=model_3007_obj
 members=yes
 weight=2500g
 category=overgrown
-param=follower_id,follower_overgrown_greyblack
+param=follower_id,overgrowncat
 tradeable=no
+param=destroy_drop,^true
 
 [overgrowncatobject_light]
 name=Pet cat
@@ -358,8 +371,9 @@ recol4d=0
 members=yes
 weight=2500g
 category=overgrown
-param=follower_id,follower_overgrown_white
+param=follower_id,overgrowncat_light
 tradeable=no
+param=destroy_drop,^true
 
 [overgrowncatobject_brown]
 name=Pet cat
@@ -380,8 +394,9 @@ recol3d=15685
 members=yes
 weight=2500g
 category=overgrown
-param=follower_id,follower_overgrown_brown
+param=follower_id,overgrowncat_brown
 tradeable=no
+param=destroy_drop,^true
 
 [overgrowncatobject_black]
 name=Pet cat
@@ -402,8 +417,9 @@ recol3d=8456
 members=yes
 weight=2500g
 category=overgrown
-param=follower_id,follower_overgrown_black
+param=follower_id,overgrowncat_black
 tradeable=no
+param=destroy_drop,^true
 
 [overgrowncatobject_browngrey]
 name=Pet cat
@@ -424,8 +440,9 @@ recol3d=11627
 members=yes
 weight=2500g
 category=overgrown
-param=follower_id,follower_overgrown_greybrown
+param=follower_id,overgrowncat_browngrey
 tradeable=no
+param=destroy_drop,^true
 
 [overgrowncatobject_bluegrey]
 name=Pet cat
@@ -446,5 +463,6 @@ recol3d=11627
 members=yes
 weight=2500g
 category=overgrown
-param=follower_id,follower_overgrown_greyblue
+param=follower_id,overgrowncat_bluegrey
 tradeable=no
+param=destroy_drop,^true

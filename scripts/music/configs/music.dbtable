@@ -1,4 +1,5 @@
 [music]
-column=name,string
-column=playbutton,component
+column=name,string,INDEXED,REQUIRED
+column=playbutton,component,INDEXED,REQUIRED
 column=unlock,int,int
+column=track,midi,REQUIRED

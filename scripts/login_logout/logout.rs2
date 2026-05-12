@@ -3,7 +3,6 @@
 ~set_pk_skull_logout;
 ~set_antifire_logout; // TODO: should be timer
 ~follower_logout;
-~rashiliyia_door_logout;
 ~duel_arena_logout;
 ~macro_event_logout;
 return(true);
@@ -23,3 +22,9 @@ if (p_finduid(uid) = true) {
 
     p_logout;
 }
+
+[proc,combat_preventlogout]
+p_preventlogout("You can't log out until 10 seconds after the end of combat.", 16);
+
+[proc,.combat_preventlogout]
+.p_preventlogout("You can't log out until 10 seconds after the end of combat.", 16);
