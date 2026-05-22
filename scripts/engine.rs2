@@ -1021,6 +1021,8 @@
 [command,error](string $text)
 // info: Return true if the world is in a production environment
 [command,map_live]()(boolean)
+// info: Return true if the tutorial skip prompt is enabled
+[command,skippable_tutorial]()(boolean)
 // info: Start tracking time
 [command,timespent]
 // info: Get the time spent since the timespent command was ran. This can be ^micros or ^millis
